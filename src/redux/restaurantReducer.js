@@ -20,6 +20,7 @@ export default function restaurantReducer(state = initialState, action) {
         case `${SET_RESTAURANT_LIST}_PENDING`:
             return {...state}
         case `${SET_RESTAURANT_LIST}_FULFILLED`:
+        console.log(action.payload);
             return {...state, restaurantList: action.payload}
         case `${SET_CITY_ID}_FULFILLED`:
             return {...state, cityId: action.payload}
@@ -34,11 +35,12 @@ export default function restaurantReducer(state = initialState, action) {
 
 //Set Restaurant List
 export function setRestaurantList(searchInput, cityId) {
+    //SET &count to 10
     return {
         type: SET_RESTAURANT_LIST,
         payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=3&sort=rating`, {
             headers: {"user-key": "6ce2f2b32321de9306bcc12a5832bceb"}
-        }).then(res => res.data.restaurants).catch(err => console.log('Err in SET_RESTAURANT_LIST'))
+        }).then(res => res.data.restaurants).catch(err => console.log('Err in SET_RESTAURANT_LIST', err))
     }
 }
 

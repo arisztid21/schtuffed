@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import { setRestaurantList, setCityId, setSearchInput } from '../../redux/restaurantReducer';
 
 class Homepage extends Component {
-    componentDidMount() {
-        // this.props.setRestaurantList();
+    handleSearch = () => {
+        this.props.setRestaurantList(this.props.searchInput, this.props.cityId)
+        setTimeout(() => {
+            this.props.history.push('/search/results');
+        }, 2000)
     }
     render() { 
         let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = this.props
@@ -14,7 +17,7 @@ class Homepage extends Component {
                 <form onSubmit={(e) => e.preventDefault()}>
                     <input onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="italian, burgers, vegetarian..." />
                     <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder="city or zip..." />
-                    <button onClick={() => setRestaurantList(searchInput, cityId)}>&#x1F50E;</button>
+                    <button onClick={() => this.handleSearch()}>&#x1F50E;</button>
                 </form>
             </React.Fragment>
          );
