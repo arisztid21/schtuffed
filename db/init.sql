@@ -34,13 +34,13 @@ Favorite_restaurants(
     id serial primary key
     ,user_id references Users(id)
     ,restaurant json
-)
+);
 
 Followers(
     id serial primary
     ,user_id references Users(id)
     ,friends_id integer ARRAY
-)
+);
 
 select * from Users;
 select * from Profiles;
