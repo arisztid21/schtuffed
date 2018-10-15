@@ -57,7 +57,7 @@ function storeUserInfoDatabase (response) {
   console.log(auth0Id)
   const db = req.app.get('db');
   return db.get_user(auth0Id).then(users => {
-    console.log('users =========>', users[0])
+    console.log('users =========>', users)
     if(users.length) {
       const user = users[0];
       req.session.user = user;
@@ -67,10 +67,10 @@ function storeUserInfoDatabase (response) {
       const userArray = [
         auth0Id,
         response.data.name,
-        response.data.email
+        response.data.email,
+        new Date()
       ];
       console.log(userArray);
-      console.log(response.data, auth0)
       console.log('second still workings')
       return db.create_user(userArray).then(newUser => {
         console.log(newUser, 'create user has fired')
