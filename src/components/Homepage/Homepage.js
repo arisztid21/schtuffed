@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setRestaurantList, setCityId, setSearchInput } from '../../redux/restaurantReducer';
+import { setUser } from '../../redux/userReducer';
 
 class Homepage extends Component {
+    componentDidMount() {
+        this.props.setUser();
+    }
     handleSearch = () => {
         this.props.setRestaurantList(this.props.searchInput, this.props.cityId)
         setTimeout(() => {
+            console.log('fired');
+            
             this.props.history.push('/search/results');
         }, 1500)
     }
@@ -34,6 +40,6 @@ class Homepage extends Component {
 const mapDispatchToProps = {
     setRestaurantList,
     setCityId,
-    setSearchInput
+    setSearchInput, setUser
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

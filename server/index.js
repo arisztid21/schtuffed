@@ -54,14 +54,11 @@ function tradeAccessTokenForUserInfo(accessTokenResponse) {
 function storeUserInfoDatabase (response) {
   console.log('store user info db')
   const auth0Id = response.data.sub;
-  console.log(auth0Id)
   const db = req.app.get('db');
   return db.get_user(auth0Id).then(users => {
-    console.log('users =========>', users)
     if(users.length) {
       const user = users[0];
       req.session.user = user;
-      console.log('still working')
       res.redirect('/');
     } else {
       const userArray = [
@@ -70,11 +67,8 @@ function storeUserInfoDatabase (response) {
         response.data.email,
         new Date()
       ];
-      console.log(userArray);
-      console.log('second still workings')
       return db.create_user(userArray).then(newUser => {
-        console.log(newUser, 'create user has fired')
-      req.session.user = newUser;
+      req.session.user = newUser[0];
       res.redirect('/');
       }).catch(error => {
         console.log('error in db.get_user', error);
@@ -115,7 +109,6 @@ app.put('/testimonies/:id', testimonies.update)
 app.delete('/testimonies/:id', testimonies.delete)
 
 app.get('/api/user-data', (req, res) => {
-  console.log(req.session.user)
   res.json(req.session.user);
 });
 

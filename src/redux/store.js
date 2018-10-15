@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import reduxPromiseMiddleware from 'redux-promise-middleware';
 import restaurantReducer from './restaurantReducer';
+import userReducer from './userReducer';
 
 const reducer = combineReducers({
-    restaurants: restaurantReducer
+    restaurants: restaurantReducer,
+    users: userReducer
 });
 
 const store = createStore(
