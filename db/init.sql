@@ -17,28 +17,28 @@ create table Reviews(
     ,ratings decimal
     ,description text not null
     ,date_posted text not null
-    ,user_id references Users(id)
+    ,user_id integer references Users(id)
 );
 
 create table Photos(
     id serial primary key
     ,restaurant_id text
-    ,user_id references Users(id)
-    ,review_id references Reviews(id)
     ,review_photos text
     ,user_photos text
+    ,user_id integer references Users(id)
+    ,review_id integer references Reviews(id)
 );
 
 create table Favorite_restaurants(
     id serial primary key
-    ,user_id references Users(id)
     ,restaurant json
+    ,user_id integer references Users(id)
 );
 
 create table Followers(
-    id serial primary
-    ,user_id references Users(id)
-    ,friends_id integer ARRAY
+    id serial primary key
+    ,friends_id integer[]
+    ,user_id integer references Users(id)
 );
 
 select * from Users;
