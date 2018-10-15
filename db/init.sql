@@ -6,7 +6,7 @@ drop table if exists Followers cascade;
 
 create table Users (
     id serial primary key
-    ,auth0_id serial not null
+    ,auth0_id text not null
     ,username text not null
     ,email text unique not null
     ,created_at text not null
@@ -18,7 +18,6 @@ create table Reviews(
     ,description text not null
     ,date_posted text not null
     ,user_id references Users(id)
-    ,profile_review text references profiles(id)
 );
 
 create table Photos(
@@ -43,5 +42,7 @@ create table Followers(
 );
 
 select * from Users;
-select * from Profiles;
 select * from Reviews;
+select * from Photos;
+select * from Favorite_restaurants;
+select * from Followers;
