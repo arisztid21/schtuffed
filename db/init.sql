@@ -4,7 +4,7 @@ drop table if exists Photos cascade;
 drop table if exists Favorite_restaurants cascade;
 drop table if exists Followers cascade;
 
-Users (
+create table Users (
     id serial primary key
     ,auth0_id serial not null
     ,username text not null
@@ -12,7 +12,7 @@ Users (
     ,created_at text not null
 );
 
-Reviews(
+create table Reviews(
     id serial primary key
     ,ratings decimal
     ,description text not null
@@ -21,7 +21,7 @@ Reviews(
     ,profile_review text references profiles(id)
 );
 
-Photos(
+create table Photos(
     id serial primary key
     ,restaurant_id text
     ,user_id references Users(id)
@@ -30,17 +30,17 @@ Photos(
     ,user_photos text
 );
 
-Favorite_restaurants(
+create table Favorite_restaurants(
     id serial primary key
     ,user_id references Users(id)
     ,restaurant json
-)
+);
 
-Followers(
+create table Followers(
     id serial primary
     ,user_id references Users(id)
     ,friends_id integer ARRAY
-)
+);
 
 select * from Users;
 select * from Profiles;
