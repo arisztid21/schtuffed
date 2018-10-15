@@ -1,13 +1,13 @@
 module.exports = {
   postUser: (req, res) => {
     const db = req.app.get('db');
-    db.create_User().then(user => res.status(200).send(user))
+    db.create_user().then(user => res.status(200).send(user))
     .catch(error => console.log(error));
   },
 
   postLogin: (req, res) => {
     const db = req.app.get('db');
-    db.create_User()
+    db.create_user()
     .then(user => res.status(200).send(user))
     .catch(error => console.log(error))
   }

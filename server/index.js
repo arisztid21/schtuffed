@@ -1,20 +1,23 @@
 /* Establish Server */
-require('dotenv').config();
-const session = require('express-session');
-const massive = require('massive');
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const axios = require('axios');
+require('dotenv').config()
+const session = require('express-session')
+const massive = require('massive')
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const axios = require('axios')
 
 /* Requiring Controllers */
-const auth_controller = require('./controllers/auth_controller');
-const profiles = require('./controllers/profiles_controller');
-const reviews = require('./controllers/reviews_controller');
-const testimonies = require('./controllers/testimonies_controller');
+const auth_controller = require('./controllers/auth_controller')
+const profiles = require('./controllers/profiles_controller')
+const reviews = require('./controllers/reviews_controller')
+const testimonies = require('./controllers/testimonies_controller')
+const favorites = require('./controllers/favorites_controller')
+const followers = require('./controllers/followers_controller')
+const photos = require('./controllers/photos_controller')
 
-app.use(bodyParser.json());
-app.use( express.static( `${__dirname}/../build` ) );
+app.use(bodyParser.json())
+app.use( express.static( `${__dirname}/../build` ) )
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -94,6 +97,26 @@ tradeCodeForAccessToken()
       res.status(500).send('An error occurred on the server. Check terminal')
     });
 });
+
+/* Favorite Controller: favorite restaurants for each user. */
+app.get('/users/favorites/:id', favorites.get)
+app.post('/users/favorites', favorites.post)
+
+/* Followers Controller: followers for unique user. */
+app.get('/users/followers/:id', followers.get)
+app.post('/users/followers', followers.post)
+
+/* User Photos Controller: photos for unique user */
+app.get('/users/photos/:id', photos.get)
+app.post('/users/photos', photos.post)
+app.put('/users/photos/:id', photos.update)
+app.delete('/users/photos/:id', photos.delete)
+
+/* Restaurant Photos Controller: photos for unique restaurant */
+app.get('/restaurants/photos/:id', photos.get)
+app.post('/restaurants/photos', photos.post)
+app.put('/restaurants/photos/:id', photos.update)
+app.delete('/restaurants/photos/:id', photos.delete)
 
 /* User Profile Controller: profile page for each user. */
 app.get('/users/profiles/:id', profiles.get)
