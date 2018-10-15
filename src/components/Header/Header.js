@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {
+    const login = () => {
+        console.log(process.env.REACT_APP_AUTH0_DOMAIN);
+        const redirectUri = encodeURIComponent(`${window.location.origin}/callback`);
+        const scope = encodeURIComponent('openid profile email');
+        window.location = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/authorize?client_id=${process.env.REACT_APP_AUTH0_CLIENT_ID}&scope=${scope}&redirect_uri=${redirectUri}&response_type=code`;
+      }
     return ( 
         <header>
             <div className="brand">
@@ -10,6 +16,10 @@ const Header = (props) => {
                 <Link to="/">Home</Link>
                 <Link to="/search/results">Results(Test)</Link>
             </nav>
+            <div className="login-signup">
+                <button onClick={login}>Log In</button>
+                <button>Sign Up</button>
+            </div>
         </header>
      );
 }

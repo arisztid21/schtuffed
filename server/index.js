@@ -5,13 +5,13 @@ const massive = require('massive');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const axios = require('axios')
+const axios = require('axios');
 
 /* Requiring Controllers */
-const auth_controller = require('./controllers/auth_controller')
-const profiles = require('./controllers/profiles_controller')
-const reviews = require('./controllers/reviews_controller')
-const testimonies = require('./controllers/testimonies_controller')
+const auth_controller = require('./controllers/auth_controller');
+const profiles = require('./controllers/profiles_controller');
+const reviews = require('./controllers/reviews_controller');
+const testimonies = require('./controllers/testimonies_controller');
 
 app.use(bodyParser.json());
 app.use( express.static( `${__dirname}/../build` ) );
