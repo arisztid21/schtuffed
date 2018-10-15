@@ -2,15 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchFilter from '../SearchFilter/SearchFilter';
+import RestaurantProfile from '../RestaurantProfile/RestaurantProfile';
 
 const SearchResultsContainer = (props) => {
     console.log('SearchResultsContainer ====>',props);
     const searchFilter = withRestaurantData(SearchFilter, {...props});
     const searchResults = withRestaurantData(SearchResults, {...props});
+    const restaurantProfile = withRestaurantData(RestaurantProfile, {...props});
+    console.log(restaurantProfile);
+    
     return ( 
         <React.Fragment>
-            {searchFilter}
-            {searchResults}
+            {props.match.path == '/search/results' && <>{searchFilter}{searchResults}</>}
+            {props.match.path == '/restaurants/:id' && restaurantProfile}
         </React.Fragment>
      );
 }
@@ -22,9 +26,7 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = {
-    
-}
+const mapDispatchToProps = {}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsContainer);
 

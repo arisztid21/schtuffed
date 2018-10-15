@@ -6,8 +6,6 @@ const SearchResults = (props) => {
     let { restaurantList } = props.data;
     let mappedRestaurants = restaurantList.map(restaurantObj => {
         let { restaurant } = restaurantObj;
-        console.log(restaurant.photos_url);
-        
         return <div key={restaurant.id}>
             <img src={restaurant.thumb} alt={restaurant.name} />
             <Link to={`/restaurants/${restaurant.id}`}>{restaurant.name}</Link>

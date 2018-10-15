@@ -7,17 +7,17 @@ class Homepage extends Component {
         this.props.setRestaurantList(this.props.searchInput, this.props.cityId)
         setTimeout(() => {
             this.props.history.push('/search/results');
-        }, 2000)
+        }, 1500)
     }
     render() { 
         let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = this.props
         return ( 
             <React.Fragment>
-                <h1>Welcome to SCHTUFFED.COM this is APP.js</h1>
+                <h1>Welcome to SCHTUFFED.COM this is HomePage.js</h1>
                 <form onSubmit={(e) => e.preventDefault()}>
                     <input onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="italian, burgers, vegetarian..." />
                     <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder="city or zip..." />
-                    <button onClick={() => this.handleSearch()}>&#x1F50E;</button>
+                    <button onClick={() => this.handleSearch()}><span role="img">&#x1F50E;</span></button>
                 </form>
             </React.Fragment>
          );

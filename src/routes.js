@@ -5,6 +5,7 @@ import SearchResultsContainer from './components/SearchResultsContainer/SearchRe
 
 export default (
     <Switch>
+        <Route path="/restaurants/:id" component={SearchResultsContainer} />
         <Route path="/search/results" component={SearchResultsContainer} />
         <Route path="/" component={Homepage} />
     </Switch>
