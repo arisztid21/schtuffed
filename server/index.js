@@ -1,3 +1,4 @@
+/* Establish Server */
 require('dotenv').config();
 const session = require('express-session');
 const massive = require('massive');
@@ -11,7 +12,6 @@ const auth_controller = require('./controllers/auth_controller')
 const profiles = require('./controllers/profiles_controller')
 const reviews = require('./controllers/reviews_controller')
 const testimonies = require('./controllers/testimonies_controller')
-
 
 app.use(bodyParser.json());
 app.use( express.static( `${__dirname}/../build` ) );
