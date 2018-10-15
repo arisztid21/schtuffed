@@ -9,11 +9,11 @@ class Homepage extends Component {
             this.props.history.push('/search/results');
         }, 1500)
     }
-    render() { 
+    render() {
         let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = this.props
-        return ( 
+        return (
             <React.Fragment>
-                <h1>Welcome to SCHTUFFED.COM this is HomePage.js</h1>
+                <h1>Welcome to SCHTUFFED.COM </h1>
                 <form onSubmit={(e) => e.preventDefault()}>
                     <input onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="italian, burgers, vegetarian..." />
                     <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder="city or zip..." />
