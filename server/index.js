@@ -69,6 +69,7 @@ function storeUserInfoDatabase (response) {
         response.data.name,
         response.data.email
       ];
+      console.log(userArray);
       console.log(response.data, auth0)
       console.log('second still workings')
       return db.create_user(userArray).then(newUser => {
