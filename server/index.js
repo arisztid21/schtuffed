@@ -99,7 +99,7 @@ app.post('/users/:id/favorites', favorites.post)
 
 /* Followers Controller: followers for unique user. */
 app.get('/users/followers/:id', followers.get)
-app.post('/users/followers', followers.post)
+app.post('/users/:id/followers', followers.post)
 
 /* User Photos Controller: photos for unique user */
 app.get('/users/photos/:id', photos.get)

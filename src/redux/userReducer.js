@@ -2,11 +2,13 @@ import axios from 'axios';
 
 const initialState = {
     user: null,
-    favoriteRestaurants: null
+    favoriteRestaurants: null,
+    followers: null
 }
 
 const SET_USER          = "SET_USER",
-      SET_FAVORITES      = "SET_FAVORITES";
+      SET_FAVORITES     = "SET_FAVORITES",
+      ADD_FOLLOWER      = "ADD_FOLLOWER";
 
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
@@ -16,6 +18,9 @@ export default function userReducer(state = initialState, action) {
         case `${SET_FAVORITES}_FULFILLED`:
         console.log(action.payload);
             return {...state, favoriteRestaurants: action.payload}
+        case `${ADD_FOLLOWER}_FULFILLED`:
+        console.log(action.payload);
+            return {...state, followers: action.payload}
         default:
             return {...state}
     }
@@ -28,9 +33,16 @@ export function setUser() {
     }
 }
 export function setFavorites(user_id, restaurant) {
-    console.log(user_id, restaurant);
+    console.log('SET_FAVORITES',user_id, restaurant);
     return {
         type: SET_FAVORITES,
         payload: axios.post(`/users/${user_id}/favorites`, restaurant).then(res => res.data).catch(err => console.log('Err in SET_FAVORITES', err))
+    }
+}
+export function addFollower(id) {
+    console.log('ADD_FOLLOWER',id);
+    return {
+        type: ADD_FOLLOWER,
+        payload: axios.post(`/users/${id}/followers`).then(res => console.log(res)).catch(err => console.log('Err in ADD_FOLLOWER', err))
     }
 }

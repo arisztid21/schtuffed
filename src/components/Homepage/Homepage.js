@@ -6,6 +6,8 @@ import { setUser } from '../../redux/userReducer';
 class Homepage extends Component {
     componentDidMount() {
         this.props.setUser();
+    //     let timestamp = Math.round((new Date()).getMonth());
+    // console.log(timestamp);
     }
     handleSearch = () => {
         this.props.setRestaurantList(this.props.searchInput, this.props.cityId)
