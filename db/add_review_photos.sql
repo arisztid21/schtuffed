@@ -1,0 +1,1 @@
+insert into Photos(restaurant_id, user_id, review_photos, review_id) values($1, $2, $3, $4);

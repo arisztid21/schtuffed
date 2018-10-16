@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const axios = require('axios')
+const cloudinary = require('cloudinary');
 
 /* Requiring Controllers */
 const auth_controller = require('./controllers/auth_controller')
