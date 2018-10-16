@@ -1,4 +1,4 @@
 insert into Reviews
-  (ratings, description, date_posted, user_id)
+  (user_id, description, ratings, date_posted, restaurant_id)
   values
-  ($1, $2, $3, $4);
+  ($1, $2, $3, $4, $5);

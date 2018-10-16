@@ -125,7 +125,7 @@ app.put('/users/profiles/:id', profiles.update)
 app.delete('/users/profiles/:id', profiles.delete)
 
 /* Restaurant Profile Reviews: reviews displayed on restaurant page. */
-app.get('/restaurants/reviews', reviews.get)
+app.get('/restaurants/reviews:id', reviews.get)
 app.post('/restaurants/reviews', reviews.post)
 app.put('/restaurants/reviews/:id', reviews.update)
 app.delete('/restaurants/reviews/:id', reviews.delete)

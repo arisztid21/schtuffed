@@ -3,14 +3,15 @@ import axios from 'axios';
 const initialState = {
     restaurantList: null,
     cityId: null,
-    searchInput: null
+    searchInput: null,
+    restaurantReviews: ['stuff', 'morestuff']
 };
-
 
 //Action Types
 const SET_RESTAURANT_LIST = "SET_RESTAURANT_LIST",
       SET_CITY_ID         = "SET_CITY_ID",
-      SET_SEARCH_INPUT    = "SET_SEARCH_INPUT";
+      SET_SEARCH_INPUT    = "SET_SEARCH_INPUT",
+      SET_RESTAURANT_REVIEWS = "SET_RESTAURANT_REVIEWS";
 
 //Reducer Function
 export default function restaurantReducer(state = initialState, action) {
@@ -26,6 +27,8 @@ export default function restaurantReducer(state = initialState, action) {
             return {...state, cityId: action.payload}
         case SET_SEARCH_INPUT:
             return {...state, searchInput: action.payload}
+        case SET_RESTAURANT_REVIEWS:
+            return {...state, restaurantReviews: action.payload}
         default:
             return {...state}
     }
@@ -60,4 +63,12 @@ export function setSearchInput(val) {
         type: SET_SEARCH_INPUT,
         payload: val
     }
+}
+
+//Set Restaurant Reviews
+export function setRestaurantReviews(restaurantReviews) {
+  return {
+    set: SET_RESTAURANT_REVIEWS,
+    payload: restaurantReviews
+  }
 }
