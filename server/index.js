@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const axios = require('axios')
+const cloudinary = require('cloudinary');
 
 /* Requiring Controllers */
 const auth_controller = require('./controllers/auth_controller')
@@ -57,26 +58,21 @@ function tradeAccessTokenForUserInfo(accessTokenResponse) {
 function storeUserInfoDatabase (response) {
   console.log('store user info db')
   const auth0Id = response.data.sub;
-  console.log(auth0Id)
   const db = req.app.get('db');
   return db.get_user(auth0Id).then(users => {
-    console.log('users =========>', users[0])
     if(users.length) {
       const user = users[0];
       req.session.user = user;
-      console.log('still working')
       res.redirect('/');
     } else {
       const userArray = [
         auth0Id,
         response.data.name,
-        response.data.email
+        response.data.email,
+        new Date()
       ];
-      console.log(response.data, auth0)
-      console.log('second still workings')
       return db.create_user(userArray).then(newUser => {
-        console.log(newUser, 'create user has fired')
-      req.session.user = newUser;
+      req.session.user = newUser[0];
       res.redirect('/');
       }).catch(error => {
         console.log('error in db.get_user', error);
@@ -99,12 +95,12 @@ tradeCodeForAccessToken()
 });
 
 /* Favorite Controller: favorite restaurants for each user. */
-app.get('/users/favorites/:id', favorites.get)
-app.post('/users/favorites', favorites.post)
+app.get('/users/:id/favorites', favorites.get)
+app.post('/users/:id/favorites', favorites.post)
 
 /* Followers Controller: followers for unique user. */
 app.get('/users/followers/:id', followers.get)
-app.post('/users/followers', followers.post)
+app.post('/users/:id/followers', followers.post)
 
 /* User Photos Controller: photos for unique user */
 app.get('/users/photos/:id', photos.get)
@@ -137,7 +133,6 @@ app.put('/testimonies/:id', testimonies.update)
 app.delete('/testimonies/:id', testimonies.delete)
 
 app.get('/api/user-data', (req, res) => {
-  console.log(req.session.user)
   res.json(req.session.user);
 });
 
