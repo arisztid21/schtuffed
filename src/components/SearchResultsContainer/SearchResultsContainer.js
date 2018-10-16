@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setFavorites } from '../../redux/userReducer';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchFilter from '../SearchFilter/SearchFilter';
 import RestaurantProfile from '../RestaurantProfile/RestaurantProfile';
+
 
 const SearchResultsContainer = (props) => {
     console.log('SearchResultsContainer ====>',props);
     const searchFilter = withRestaurantData(SearchFilter, {...props});
     const searchResults = withRestaurantData(SearchResults, {...props});
     const restaurantProfile = withRestaurantData(RestaurantProfile, {...props});
-    console.log(restaurantProfile);
     
     return ( 
         <React.Fragment>
@@ -21,12 +22,16 @@ const SearchResultsContainer = (props) => {
 
 const mapStateToProps = state => {
     let { restaurantList } = state.restaurants;
+    let { user } = state.users;
     return {
-        restaurantList
+        restaurantList,
+        user
     }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+    setFavorites
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsContainer);
 

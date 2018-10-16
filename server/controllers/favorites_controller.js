@@ -1,6 +1,7 @@
 module.exports = {
   get: (req, res) => {
     const db = req.app.get('db')
+    console.log("REQ.BODY ============>",req.body);
     db.get_favorites()
     .then(favorite => res.status(200).send(favorite))
     .catch(error => console.log('Unexpected error in retrieving favorites', error))
@@ -8,8 +9,13 @@ module.exports = {
 
   post: (req, res) => {
     const db = req.app.get('db')
-    db.create_favorites([user_id, restaurant])
-    .then(favorite => res.status(200).send(favorite))
+    // console.log("REQ.BODY ============>",req.body);
+    // console.log("REQ.PARAMS ============>",req.params);
+    let { id, name, location, cuisines, price_range, thumb, user_rating } = req.body
+    let { params } = req;
+    let restaurant = {id, name, location, cuisines, price_range, thumb, user_rating}
+    db.create_favorites([restaurant, params.id])
+    .then(favorite => res.status(200))
     .catch(error => console.log('Unexpected error in adding to favorites', error))
   }
 }

@@ -95,12 +95,12 @@ tradeCodeForAccessToken()
 });
 
 /* Favorite Controller: favorite restaurants for each user. */
-app.get('/users/favorites/:id', favorites.get)
-app.post('/users/favorites', favorites.post)
+app.get('/users/:id/favorites', favorites.get)
+app.post('/users/:id/favorites', favorites.post)
 
 /* Followers Controller: followers for unique user. */
 app.get('/users/followers/:id', followers.get)
-app.post('/users/followers', followers.post)
+app.post('/users/:id/followers', followers.post)
 
 /* User Photos Controller: photos for unique user */
 app.get('/users/photos/:id', photos.get)
