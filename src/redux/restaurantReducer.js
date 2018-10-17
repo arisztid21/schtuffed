@@ -5,7 +5,7 @@ const initialState = {
     cityId: null,
     searchInput: null,
     isLoading: false,
-    restaurantReviews: ['stuff', 'morestuff']
+    restaurantReviews: [{id: 0, description: 'stuff', ratings: 3.7}, {id: 1, description: 'more stuff', ratings: 2.7}]
 };
 
 //Action Types

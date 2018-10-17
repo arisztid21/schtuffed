@@ -16,15 +16,17 @@ class RestaurantReviews extends Component {
   componentDidMount() {
     console.log(this.props)
     axios.get(`/restaurants/reviews/${this.props.match.params.id}`).then(res => {
+      console.log(res);
       this.props.setRestaurantReviews(res.data)
     }).catch(error => console.log(error))
   }
 
-  postReview = (ratings, description, restaurant_id) => {
-    console.log(ratings, description, restaurant_id)
+  postReview = (ratings, description, restaurant_id, user_id) => {
+    console.log(ratings, description, restaurant_id, user_id)
     const reviewInput = {
       ratings,
       description,
+      user_id
     }
     console.log(restaurant_id)
     axios.post(`/restaurants/reviews/${restaurant_id}`, {reviewInput}).then( res => {
@@ -47,13 +49,15 @@ class RestaurantReviews extends Component {
 
   render () {
 
-    const {restaurantReviews} = this.props;
+    const {restaurantReviews, user} = this.props;
     const {description, ratings} = this.state
 
     console.log(restaurantReviews)
 
-    let displayedReviews = restaurantReviews.map( (review, id) => {
-      return <SingleReview key={id} {...review} />
+    let displayedReviews = restaurantReviews.map( (review, i) => {
+      console.log(review);
+      
+      return <SingleReview key={i} {...review} />
     })
 
     return (
@@ -61,7 +65,7 @@ class RestaurantReviews extends Component {
         <div className="postreview-container">
           <h2>Rating:</h2><input onChange={(e) => this.handleRatings(e)}/>
           <h2>Description:</h2><input onChange={(e) => this.handleDescription(e)}/>
-          <button onClick={() => this.postReview(ratings, description, this.props.match.params.id)}>Submit Review</button>
+          <button onClick={() => this.postReview(ratings, description, this.props.match.params.id, user.id)}>Submit Review</button>
       </div>
 
 
@@ -76,8 +80,10 @@ class RestaurantReviews extends Component {
 const mapStateToProps = (state) => {
   console.log(state.restaurantReviews)
   console.log(state)
+  let { user } = state.users
   return {
-    restaurantReviews: state.restaurants.restaurantReviews
+    restaurantReviews: state.restaurants.restaurantReviews,
+    user
   }
 }
 
