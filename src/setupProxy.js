@@ -4,6 +4,6 @@ module.exports = function(app) {
   app.use(proxy([
       '/users',
       '/auth/callback',
-      '/api/user-data'
+      '/api/',
     ],{ target: 'http://localhost:4000/' }));
 };
