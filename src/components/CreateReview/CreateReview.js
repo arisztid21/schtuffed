@@ -9,7 +9,7 @@ export default class CreateReview extends Component {
     constructor(){
         super();
         this.state={
-            uploadedFileCloudinaryUrl: ''
+            review_photos: ''
         }
     }
 
@@ -24,9 +24,10 @@ export default class CreateReview extends Component {
             for(var pair of formData.entries()) {
                      console.log(pair); 
                   }
-            axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
+            axios.post(CLOUDINARY_UPLOAD_URL, formData, response.data.secure_url).then(response => {
+                console.log(response)
                 this.setState({
-                    uploadedFileCloudinaryUrl: response.data.secure_url
+                    review_photos: response.data.secure_url
                 })
         })
         }).catch(err => console.log('problem with uploading image file', err))
@@ -36,10 +37,10 @@ export default class CreateReview extends Component {
         return (
             <div>
                 {
-                this.state.uploadedFileCloudinaryUrl
+                this.state.review_photos
                 ?
                 <div>
-                    <img src={this.state.uploadedFileCloudinaryUrl} alt='cloudinary image'/>
+                    <img src={this.state.review_photos} alt='cloudinary image'/>
                     <Dropzone
                             multiple={false}
                             accept='image/*'

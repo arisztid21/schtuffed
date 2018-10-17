@@ -3,6 +3,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {setRestaurantReviews} from '../../redux/restaurantReducer'
 import SingleReview from './SingleReview'
+import CreateReview from '../CreateReview/CreateReview';
 
 class RestaurantReviews extends Component {
   constructor() {
@@ -61,7 +62,8 @@ class RestaurantReviews extends Component {
         <div className="postreview-container">
           <h2>Rating:</h2><input onChange={(e) => this.handleRatings(e)}/>
           <h2>Description:</h2><input onChange={(e) => this.handleDescription(e)}/>
-          <button onClick={() => this.postReview(ratings, description, this.props.match.params.id)}>Submit Review</button>
+          <CreateReview/>
+          <button onClick={() => this.postReview(ratings, description, this.props.match.params.id, Response.data.secure_url)}>Submit Review</button>
       </div>
 
 
