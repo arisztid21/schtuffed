@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setRestaurantList, setCityId, setSearchInput } from '../../redux/restaurantReducer';
 import { setUser } from '../../redux/userReducer';
+import { Link } from 'react-router-dom'
 
 class Homepage extends Component {
     componentDidMount() {
@@ -26,6 +27,9 @@ class Homepage extends Component {
                     <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder="city or zip..." />
                     <button onClick={() => this.handleSearch()}><span role="img">&#x1F50E;</span></button>
                 </form>
+
+                <Link to={'/testimonies'}><h3>What are people saying about Schtuffed?</h3></Link>
+
             </React.Fragment>
          );
     }
