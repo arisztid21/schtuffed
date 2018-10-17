@@ -6,7 +6,7 @@ import Testimonies from './components/Testimonies/Testimonies'
 
 export default (
     <Switch>
-        <Route path="/restaurants/:id" component={SearchResultsContainer} />
+        <Route path="/restaurant-profile/:id" component={SearchResultsContainer} />
         <Route path="/search/results" component={SearchResultsContainer} />
         <Route exact to path="/" component={Homepage} />
         <Route path="/testimonies" component={Testimonies} /> 

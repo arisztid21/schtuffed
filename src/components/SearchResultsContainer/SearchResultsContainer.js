@@ -15,7 +15,7 @@ const SearchResultsContainer = (props) => {
     return ( 
         <React.Fragment>
             {props.match.path == '/search/results' ? props.isLoading ? <h1>Loading</h1> : <>{searchFilter}{searchResults}</> : null}
-            {props.match.path == '/restaurants/:id' && restaurantProfile}
+            {props.match.path == '/restaurant-profile/:id' && restaurantProfile}
         </React.Fragment>
      );
 }
