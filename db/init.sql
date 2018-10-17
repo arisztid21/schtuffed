@@ -42,8 +42,18 @@ create table Followers(
     ,user_id integer references Users(id)
 );
 
+create table Testimonies(
+  id serial primary key
+  ,user_id integer references Users(id)
+  ,title text not null
+  ,description text not null
+  ratings decimal,
+  date_posted text not null
+)
+
 select * from Users;
 select * from Reviews;
 select * from Photos;
 select * from Favorite_restaurants;
 select * from Followers;
+select * from Testimonies 

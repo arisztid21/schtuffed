@@ -5,14 +5,16 @@ const initialState = {
     cityId: null,
     searchInput: null,
     isLoading: false,
-    restaurantReviews: ['stuff', 'morestuff']
+    restaurantReviews: false,
+    testimonies: false
 };
 
 //Action Types
 const SET_RESTAURANT_LIST = "SET_RESTAURANT_LIST",
       SET_CITY_ID         = "SET_CITY_ID",
       SET_SEARCH_INPUT    = "SET_SEARCH_INPUT",
-      SET_RESTAURANT_REVIEWS = "SET_RESTAURANT_REVIEWS";
+      SET_RESTAURANT_REVIEWS = "SET_RESTAURANT_REVIEWS",
+      SET_TESTIMONIES = "SET_TESTIMONIES"
 
 //Reducer Function
 export default function restaurantReducer(state = initialState, action) {
@@ -30,6 +32,8 @@ export default function restaurantReducer(state = initialState, action) {
             return {...state, searchInput: action.payload}
         case SET_RESTAURANT_REVIEWS:
             return {...state, restaurantReviews: action.payload}
+        case SET_TESTIMONIES:
+            return {...state, testimonies: action.payload}
         default:
             return {...state}
     }
@@ -41,7 +45,7 @@ export default function restaurantReducer(state = initialState, action) {
 export function setRestaurantList(searchInput, cityId, history) {
     //SET &count to 10
     console.log(history);
-    
+
     return {
         type: SET_RESTAURANT_LIST,
         payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=3&sort=rating`, {
@@ -74,7 +78,15 @@ export function setSearchInput(val) {
 //Set Restaurant Reviews
 export function setRestaurantReviews(restaurantReviews) {
   return {
-    set: SET_RESTAURANT_REVIEWS,
+    type: SET_RESTAURANT_REVIEWS,
     payload: restaurantReviews
+  }
+}
+
+// Set Testimonies
+export function setTestimonies(testimonies) {
+  return {
+    type: SET_TESTIMONIES,
+    payload: testimonies
   }
 }
