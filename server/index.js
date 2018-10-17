@@ -145,10 +145,10 @@ app.post('/api/logout', (req, res) => {
   res.send();
 });
 
-// const path = require('path')
-// app.get('*', (req, res)=>{
-//  res.sendFile(path.join(__dirname, '../build/index.html'));
-// })
+const path = require('path')
+app.get('*', (req, res)=>{
+ res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`));
