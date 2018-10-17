@@ -12,11 +12,6 @@ class Homepage extends Component {
     }
     handleSearch = () => {
         this.props.setRestaurantList(this.props.searchInput, this.props.cityId, this.props.history)
-        // setTimeout(() => {
-        //     console.log('fired');
-
-        //     this.props.history.push('/search/results');
-        // }, 1500)
     }
     render() {
         let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = this.props

@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const initialState = {
-    restaurantList: null,
+    restaurantList: null || JSON.parse(localStorage.getItem('results')),
     cityId: null,
     searchInput: null,
     isLoading: false,
-    restaurantReviews: [{id: 0, description: 'stuff', ratings: 3.7}, {id: 1, description: 'more stuff', ratings: 2.7}]
+    restaurantReviews: [{id: 0, description: 'stuff', ratings: 3.7}, {id: 1, description: 'more stuff', ratings: 2.7}],
     testimonies: null
 };
 
@@ -44,8 +44,6 @@ export default function restaurantReducer(state = initialState, action) {
 //Set Restaurant List
 export function setRestaurantList(searchInput, cityId, history) {
     //SET &count to 10
-    console.log(history);
-
     return {
         type: SET_RESTAURANT_LIST,
         payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=3&sort=rating`, {
