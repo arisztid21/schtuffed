@@ -5,14 +5,16 @@ const initialState = {
     cityId: null,
     searchInput: null,
     isLoading: false,
-    restaurantReviews: [{id: 0, description: 'stuff', ratings: 3.7}, {id: 1, description: 'more stuff', ratings: 2.7}]
+    restaurantReviews: [{id: 0, description: 'stuff', ratings: 3.7}, {id: 1, description: 'more stuff', ratings: 2.7}],
+    testimonies: null
 };
 
 //Action Types
 const SET_RESTAURANT_LIST = "SET_RESTAURANT_LIST",
       SET_CITY_ID         = "SET_CITY_ID",
       SET_SEARCH_INPUT    = "SET_SEARCH_INPUT",
-      SET_RESTAURANT_REVIEWS = "SET_RESTAURANT_REVIEWS";
+      SET_RESTAURANT_REVIEWS = "SET_RESTAURANT_REVIEWS",
+      SET_TESTIMONIES = "SET_TESTIMONIES"
 
 //Reducer Function
 export default function restaurantReducer(state = initialState, action) {
@@ -30,6 +32,8 @@ export default function restaurantReducer(state = initialState, action) {
             return {...state, searchInput: action.payload}
         case SET_RESTAURANT_REVIEWS:
             return {...state, restaurantReviews: action.payload}
+        case SET_TESTIMONIES:
+            return {...state, testimonies: action.payload}
         default:
             return {...state}
     }
@@ -47,7 +51,7 @@ export function setRestaurantList(searchInput, cityId, history) {
         }).then(res => {
             localStorage.setItem('results', JSON.stringify(res.data.restaurants ))
             console.log(localStorage.setItem('results', JSON.stringify(res.data.restaurants )));
-            
+
             history.push('/search/results')
             return res.data.restaurants
         }).catch(err => console.log('Err in SET_RESTAURANT_LIST', err))
@@ -77,5 +81,13 @@ export function setRestaurantReviews(restaurantReviews) {
   return {
     type: SET_RESTAURANT_REVIEWS,
     payload: restaurantReviews
+  }
+}
+
+// Set Testimonies
+export function setTestimonies(testimonies) {
+  return {
+    type: SET_TESTIMONIES,
+    payload: testimonies
   }
 }
