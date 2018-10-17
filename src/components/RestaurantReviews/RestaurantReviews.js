@@ -20,16 +20,14 @@ class RestaurantReviews extends Component {
     }).catch(error => console.log(error))
   }
 
-  postReview = (ratings, description, date_posted, user_id, restaurant_id) => {
-    console.log('Are you firing?')
+  postReview = (ratings, description, restaurant_id) => {
+    console.log(ratings, description, restaurant_id)
     const reviewInput = {
       ratings,
       description,
-      date_posted,
-      user_id,
-      restaurant_id
     }
-    axios.post('/restaurants/reviews', {reviewInput}).then( res => {
+    console.log(restaurant_id)
+    axios.post(`/restaurants/reviews/${restaurant_id}`, {reviewInput}).then( res => {
       this.props.setRestaurantReviews(res.data)
     }).catch(error => console.log(error))
   }
@@ -63,8 +61,8 @@ class RestaurantReviews extends Component {
         <div className="postreview-container">
           <h2>Rating:</h2><input onChange={(e) => this.handleRatings(e)}/>
           <h2>Description:</h2><input onChange={(e) => this.handleDescription(e)}/>
-          <button onClick={() => this.postReview(ratings, description)}>Submit Review</button>
-        </div>
+          <button onClick={() => this.postReview(ratings, description, this.props.match.params.id)}>Submit Review</button>
+      </div>
 
 
         <div className="displayed-reviews">

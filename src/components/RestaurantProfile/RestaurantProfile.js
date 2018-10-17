@@ -13,7 +13,7 @@ const RestaurantProfile = (props) => {
             <Favoritebutton restaurant={restaurant} setFavorites={setFavorites} user={user} />
             <img src={thumb} alt={name} />
             <h3>{name}</h3>
-            <RestaurantReviews />
+            <RestaurantReviews match={props.data.match}/>
         </React.Fragment>
      );
 }
