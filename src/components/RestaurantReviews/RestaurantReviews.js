@@ -3,7 +3,6 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {setRestaurantReviews} from '../../redux/restaurantReducer'
 import SingleReview from './SingleReview'
-import {withRouter} from 'react-router-dom'
 
 class RestaurantReviews extends Component {
   constructor() {
@@ -88,4 +87,4 @@ const mapDispatchToProps = {
   setRestaurantReviews
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (withRouter(RestaurantReviews));
+export default connect(mapStateToProps, mapDispatchToProps) (RestaurantReviews);

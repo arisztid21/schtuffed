@@ -10,12 +10,12 @@ class Homepage extends Component {
     // console.log(timestamp);
     }
     handleSearch = () => {
-        this.props.setRestaurantList(this.props.searchInput, this.props.cityId)
-        setTimeout(() => {
-            console.log('fired');
+        this.props.setRestaurantList(this.props.searchInput, this.props.cityId, this.props.history)
+        // setTimeout(() => {
+        //     console.log('fired');
             
-            this.props.history.push('/search/results');
-        }, 1500)
+        //     this.props.history.push('/search/results');
+        // }, 1500)
     }
     render() {
         let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = this.props
