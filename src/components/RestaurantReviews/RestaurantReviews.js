@@ -10,7 +10,7 @@ class RestaurantReviews extends Component {
     super()
     this.state = {
       description: '',
-      rating: '',
+      ratings: ''
     }
   }
 
@@ -21,16 +21,38 @@ class RestaurantReviews extends Component {
     }).catch(error => console.log(error))
   }
 
-  handleDescription (e) {
+  postReview = (ratings, description, date_posted, user_id, restaurant_id) => {
+    console.log('Are you firing?')
+    const reviewInput = {
+      ratings,
+      description,
+      date_posted,
+      user_id,
+      restaurant_id
+    }
+    axios.post('/restaurants/reviews', {reviewInput}).then( res => {
+      this.props.setRestaurantReviews(res.data)
+    }).catch(error => console.log(error))
+  }
+
+  handleRatings = (e) => {
+    this.setState({
+      ratings: e.target.value
+    })
+  }
+
+  handleDescription = (e) => {
+    console.log(e.target.value)
     this.setState({
       description: e.target.value
     })
   }
 
-
   render () {
 
     const {restaurantReviews} = this.props;
+    const {description, ratings} = this.state
+
     console.log(restaurantReviews)
 
     let displayedReviews = restaurantReviews.map( (review, id) => {
@@ -40,8 +62,9 @@ class RestaurantReviews extends Component {
     return (
       <div className="restaurantreviews-container">
         <div className="postreview-container">
-          <input />
-          <button>Submit Review</button>
+          <h2>Rating:</h2><input onChange={(e) => this.handleRatings(e)}/>
+          <h2>Description:</h2><input onChange={(e) => this.handleDescription(e)}/>
+          <button onClick={() => this.postReview(ratings, description)}>Submit Review</button>
         </div>
 
 
