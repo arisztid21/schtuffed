@@ -3,13 +3,15 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {setRestaurantReviews} from '../../redux/restaurantReducer'
 import SingleReview from './SingleReview'
+import CreateReview from '../CreateReview/CreateReview';
 
 class RestaurantReviews extends Component {
   constructor() {
     super()
     this.state = {
       description: '',
-      ratings: ''
+      ratings: '',
+      review_photos: ''
     }
   }
 
@@ -21,12 +23,13 @@ class RestaurantReviews extends Component {
     }).catch(error => console.log(error))
   }
 
-  postReview = (ratings, description, restaurant_id, user_id) => {
-    console.log(ratings, description, restaurant_id, user_id)
+  postReview = (ratings, description, restaurant_id, user_id, review_photos) => {
+    console.log(ratings, description, restaurant_id, user_id, review_photos)
     const reviewInput = {
       ratings,
       description,
-      user_id
+      user_id,
+      review_photos
     }
     console.log(restaurant_id)
     axios.post(`/restaurants/reviews/${restaurant_id}`, {reviewInput}).then( res => {
@@ -47,12 +50,20 @@ class RestaurantReviews extends Component {
     })
   }
 
+  handlePhoto = (val) => {
+    console.log(val)
+    this.setState({
+      review_photos: val
+    })
+  }
+
   render () {
 
     const {restaurantReviews, user} = this.props;
-    const {description, ratings} = this.state
+    const {description, ratings, review_photos} = this.state
 
     console.log(restaurantReviews)
+    console.log('state======', this.state)
 
     let displayedReviews = restaurantReviews.map( (review, i) => {
       console.log(review);
@@ -65,7 +76,9 @@ class RestaurantReviews extends Component {
         <div className="postreview-container">
           <h2>Rating:</h2><input onChange={(e) => this.handleRatings(e)}/>
           <h2>Description:</h2><input onChange={(e) => this.handleDescription(e)}/>
-          <button onClick={() => this.postReview(ratings, description, this.props.match.params.id, user.id)}>Submit Review</button>
+          <CreateReview reviewPhoto={this.state.review_photos}
+                        handlePhoto={this.handlePhoto}/>
+          <button onClick={() => this.postReview(ratings, description, this.props.match.params.id, user.id, review_photos)}>Submit Review</button>
       </div>
 
 

@@ -6,10 +6,10 @@ const CLOUDINARY_UPLOAD_PRESET = 'schtuffed';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/arisztid21/image/upload'
 
 export default class CreateReview extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            uploadedFileCloudinaryUrl: ''
+            review_photos: this.props.reviewPhoto
         }
     }
 
@@ -25,9 +25,11 @@ export default class CreateReview extends Component {
                      console.log(pair); 
                   }
             axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
-                this.setState({
-                    uploadedFileCloudinaryUrl: response.data.secure_url
-                })
+                console.log(response)
+                    this.props.handlePhoto(response.data.secure_url)
+                    this.setState({
+                        review_photos: response.data.secure_url
+                    })
         })
         }).catch(err => console.log('problem with uploading image file', err))
     }
@@ -36,10 +38,10 @@ export default class CreateReview extends Component {
         return (
             <div>
                 {
-                this.state.uploadedFileCloudinaryUrl
+                this.state.review_photos
                 ?
                 <div>
-                    <img src={this.state.uploadedFileCloudinaryUrl} alt='cloudinary image'/>
+                    <img src={this.state.review_photos} alt='cloudinary image'/>
                     <Dropzone
                             multiple={false}
                             accept='image/*'
