@@ -2,7 +2,6 @@ import React from 'react';
 import RestaurantReviews from '../RestaurantReviews/RestaurantReviews'
 import Favoritebutton from '../FavoriteButton/FavoriteButton';
 
-
 const RestaurantProfile = (props) => {
     console.log(props.data);
     let { restaurantList, setFavorites, user } = props.data
@@ -14,7 +13,7 @@ const RestaurantProfile = (props) => {
             <Favoritebutton restaurant={restaurant} setFavorites={setFavorites} user={user} />
             <img src={thumb} alt={name} />
             <h3>{name}</h3>
-            <RestaurantReviews />
+            <RestaurantReviews match={props.data.match}/>
         </React.Fragment>
      );
 }

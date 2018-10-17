@@ -14,18 +14,19 @@ const SearchResultsContainer = (props) => {
     
     return ( 
         <React.Fragment>
-            {props.match.path == '/search/results' && <>{searchFilter}{searchResults}</>}
+            {props.match.path == '/search/results' ? props.isLoading ? <h1>Loading</h1> : <>{searchFilter}{searchResults}</> : null}
             {props.match.path == '/restaurants/:id' && restaurantProfile}
         </React.Fragment>
      );
 }
 
 const mapStateToProps = state => {
-    let { restaurantList } = state.restaurants;
+    let { restaurantList, isLoading } = state.restaurants;
     let { user } = state.users;
     return {
         restaurantList,
-        user
+        user,
+        isLoading
     }
 }
 

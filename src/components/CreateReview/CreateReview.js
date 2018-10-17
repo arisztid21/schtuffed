@@ -21,9 +21,6 @@ export default class CreateReview extends Component {
             formData.append('timestamp', response.data.timestamp)
             formData.append('file', file[0]);
             console.log(response.data)
-            // let formData = new formData();
-            // formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-            // formData.append("file", file[0]);
             for(var pair of formData.entries()) {
                      console.log(pair); 
                   }
