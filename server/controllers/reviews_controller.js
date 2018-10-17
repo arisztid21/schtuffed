@@ -1,10 +1,19 @@
 const cloudinary = require('cloudinary');
 module.exports = {
+  // Gets all reviews from all restaurants
   get: (req, res) => {
     const db = req.app.get('db')
     db.get_reviews()
     .then(review => res.status(200).send(review))
-    .catch(error => console.log('Unexpected error in retrieving reviews', error))
+    .catch(error => console.log('Unexpected error in retrieving all reviews', error))
+  },
+
+  //Gets all reviews for one specific restaurant of choice
+  getRestaurantReviews: (req, res) => {
+    const db = req.app.get('db')
+    db.get_restaurant_reviews([restaurant_id])
+    .then(reviews => res.status(200).send(reviews))
+    .catch(error => console.log('Unexpected error in retrieving reviews for this restaurant', error))
   },
 
   post: (req, res) => {
