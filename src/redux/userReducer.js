@@ -39,10 +39,10 @@ export function setFavorites(user_id, restaurant) {
         payload: axios.post(`/users/${user_id}/favorites`, restaurant).then(res => res.data).catch(err => console.log('Err in SET_FAVORITES', err))
     }
 }
-export function addFollower(id) {
-    console.log('ADD_FOLLOWER',id);
+export function addFollower(user_id, follower_id) {
+    console.log('ADD_FOLLOWER',follower_id);
     return {
         type: ADD_FOLLOWER,
-        payload: axios.post(`/users/${id}/followers`).then(res => console.log(res)).catch(err => console.log('Err in ADD_FOLLOWER', err))
+        payload: axios.post(`/users/${user_id}/followers`, {follower_id}).then(res => console.log(res)).catch(err => console.log('Err in ADD_FOLLOWER', err))
     }
 }

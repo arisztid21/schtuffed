@@ -15,6 +15,7 @@ module.exports = {
     const {id} = req.params
     let date_posted = new Date();
     console.log(description, ratings, 'heyyyyyy')
+    console.log('it was put in the databse', review_photos)
     db.create_reviews([ratings, description, date_posted, user_id, id])
     .then(res => db.add_review_photos([res[0].restaurant_id, res[0].user_id, review_photos, res[0].id]))
     .then(review => res.status(200).send(review))
@@ -34,5 +35,19 @@ module.exports = {
     db.delete_reviews([params.id])
     .then(review => res.status(200).send(review))
     .catch(error => console.log('Unexpected error in deleting review', error))
+  },
+  get_photos: (req, res) => {
+    const timestamp = Math.round((new Date()).getTime() / 1000);
+
+    const api_secret = process.env.CLOUDINARY_SECRET_API;
+
+    const signature = cloudinary.utils.api_sign_request({timestamp: timestamp}, api_secret);
+
+    const payload = {
+      signature: signature,
+      timestamp: timestamp
+    };
+    console.log(payload);
+    res.send(payload);
   }
 }

@@ -5,8 +5,8 @@ const initialState = {
     cityId: null,
     searchInput: null,
     isLoading: false,
-    restaurantReviews: false,
-    testimonies: false
+    restaurantReviews: [{id: 0, description: 'stuff', ratings: 3.7}, {id: 1, description: 'more stuff', ratings: 2.7}]
+    testimonies: null
 };
 
 //Action Types
@@ -51,6 +51,9 @@ export function setRestaurantList(searchInput, cityId, history) {
         payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=3&sort=rating`, {
             headers: {"user-key": "6ce2f2b32321de9306bcc12a5832bceb"}
         }).then(res => {
+            localStorage.setItem('results', JSON.stringify(res.data.restaurants ))
+            console.log(localStorage.setItem('results', JSON.stringify(res.data.restaurants )));
+
             history.push('/search/results')
             return res.data.restaurants
         }).catch(err => console.log('Err in SET_RESTAURANT_LIST', err))

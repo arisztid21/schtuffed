@@ -132,6 +132,10 @@ app.post('/testimonies', testimonies.post)
 app.put('/testimonies/:id', testimonies.update)
 app.delete('/testimonies/:id', testimonies.delete)
 
+/* Cloudinary: passes hashed secret api signature for cloudinary. */
+app.get('/api/upload', reviews.get_photos)
+
+
 app.get('/api/user-data', (req, res) => {
   res.json(req.session.user);
 });
