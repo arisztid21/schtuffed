@@ -1,9 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
-import RestaurantReviews from '../RestaurantReviews/RestaurantReviews'
-=======
+import RestaurantReviews from '../RestaurantReviews/RestaurantReviews';
 import Favoritebutton from '../FavoriteButton/FavoriteButton';
->>>>>>> 57f57d6c3894a6c432c21c977abfb165caa1f9b6
 
 
 const RestaurantProfile = (props) => {
