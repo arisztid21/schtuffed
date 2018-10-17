@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(proxy([
       '/users',
       '/auth/callback',
-      '/api',
-      '/restaurants'
+      '/restaurants',
+      '/api/'
     ],{ target: 'http://localhost:4000/' }));
 };
