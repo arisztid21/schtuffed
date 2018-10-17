@@ -2,9 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 const SearchResults = (props) => {
     //Persist data on refresh: LocalStorage || IndexDB
+    let listToMap;
+    if (localStorage.getItem('results')) {
+        //var doesnt create an if statement scope
+        var storedData = JSON.parse(localStorage.getItem('results'));
+        console.log(storedData);
+        console.log(props);
+        listToMap = storedData
+    } else {
+        listToMap = props.data.restaurantList
+    }
     console.log('SearchResults ====>',props);
-    let { restaurantList } = props.data;
-    let mappedRestaurants = restaurantList.map(restaurantObj => {
+    // let { restaurantList } = props.data;
+    let mappedRestaurants = listToMap.map(restaurantObj => {
         let { restaurant } = restaurantObj;
         return <div key={restaurant.id}>
             <img src={restaurant.thumb} alt={restaurant.name} />
