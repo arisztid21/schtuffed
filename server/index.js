@@ -58,6 +58,8 @@ function tradeAccessTokenForUserInfo(accessTokenResponse) {
 function storeUserInfoDatabase (response) {
   console.log('store user info db')
   const auth0Id = response.data.sub;
+  console.log(response.data);
+  
   const db = req.app.get('db');
   return db.get_user(auth0Id).then(users => {
     if(users.length) {
@@ -69,7 +71,8 @@ function storeUserInfoDatabase (response) {
         auth0Id,
         response.data.name,
         response.data.email,
-        new Date()
+        new Date(),
+        response.data.picture
       ];
       return db.create_user(userArray).then(newUser => {
       req.session.user = newUser[0];
