@@ -10,7 +10,9 @@ class Testimonies extends Component {
     this.state = {
       title: null,
       rating: null,
-      description: null
+      description: null,
+      toggleEdit: false,
+      editedTestimony: null
     }
   }
 
@@ -27,19 +29,49 @@ handlePost = (title, rating, description, user_id) => {
   axios.post(`/testimonies`, {title, rating, description, user_id})
     .then(res => console.log(res.data))
     .catch(err => console.log(err));
+
 }
+
+handleDelete = (id) => {
+  axios.delete(`/testimonies/${id}`)
+  .then(res => console.log(res.data))
+  .catch(err => console.log(err))
+}
+handleToggleEdit = (title, rating, description, id) => {
+  this.setState({
+      title,
+      rating,
+      description,
+      toggleEdit: !this.state.toggleEdit,
+      editedTestimony: id
+  })
+}
+
+handleUpdate = (id, title, rating, description, user_id) => {
+  console.log(id, title, rating, description, user_id);
+
+  axios.put(`/testimonies/${id}`, {id, title, rating, description, user_id})
+  .then(res => console.log(res.data))
+  .catch(err => console.log(err))
+}
+
   render () {
-    //POST
-      //Title
-      //Description
-      //Rating
-      //Date Posted (08/18)
-      //User - Profile Thumbnail Component
     console.log(this.state, this.props)
     let mappedTestimonies;
     if(this.props.testimonies) {
     mappedTestimonies = this.props.testimonies.map(testimony => {
-      return <SingleTestimony {...testimony} />
+      return <SingleTestimony
+        key={testimony.id}
+        {...testimony}
+        stateTitle={this.state.title}
+        stateRating={this.state.rating}
+        stateDescription={this.state.description}
+        toggleEdit={this.state.toggleEdit}
+        editedTestimony={this.state.editedTestimony}
+        deleteTestimony={this.handleDelete}
+        handleToggleEdit={this.handleToggleEdit}
+        handleChange={this.handleChange}
+        editTestimony={this.handleUpdate} />
     }) }
     return (
       <div className="testimonies-container">
