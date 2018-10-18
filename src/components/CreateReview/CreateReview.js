@@ -25,7 +25,7 @@ export default class CreateReview extends Component {
                      console.log(pair); 
                   }
             axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
-                console.log(response)
+                console.log('cloud response----',response)
                     this.props.handlePhoto(response.data.secure_url)
                     this.setState({
                         review_photos: response.data.secure_url

@@ -11,8 +11,12 @@ module.exports = {
   //Gets all reviews for one specific restaurant of choice
   getRestaurantReviews: (req, res) => {
     const db = req.app.get('db')
-    db.get_restaurant_reviews([restaurant_id])
-    .then(reviews => res.status(200).send(reviews))
+    const {id} = req.params;
+    console.log(id)
+    db.get_restaurant_reviews([id])
+    .then(reviews => {
+      console.log(reviews)
+      res.status(200).send(reviews)})
     .catch(error => console.log('Unexpected error in retrieving reviews for this restaurant', error))
   },
 

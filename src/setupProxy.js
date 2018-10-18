@@ -5,6 +5,7 @@ module.exports = function(app) {
       '/users',
       '/testimonies',
       '/auth/callback',
+      // '/restaurant',
       '/restaurants',
       '/api'
     ],{ target: 'http://localhost:4000/' }));
