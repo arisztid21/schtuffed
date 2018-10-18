@@ -61,7 +61,7 @@ class RestaurantReviews extends Component {
     const {description, ratings, review_photos} = this.state
 
     let displayedReviews = restaurantReviews.map( (review, i) => {
-      return <SingleReview key={i} {...review} />
+      return <SingleReview key={i} {...review}/>
     })
 
     return (

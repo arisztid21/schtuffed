@@ -10,6 +10,7 @@ const SingleReview = (props) => {
     <div className="reviews-description">
       <h3>{props.ratings}</h3>
       <h2>{props.description}</h2>
+      <img src={props.review_photos}/>
     </div>
     </div>
   )
