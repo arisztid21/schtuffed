@@ -9,7 +9,10 @@ module.exports = {
   getUserReviews: (req, res) => {
     const db = req.app.get('db');
     db.get_profile_reviews()
-      .then(userReviews => res.status(200).send(userReviews))
+      .then(userReviews => {
+        console.log(userReviews);
+        res.status(200).send(userReviews)
+      })
       .catch(err => console.log('Err in getUserReviews', err));
   },
 
