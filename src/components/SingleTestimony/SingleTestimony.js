@@ -12,6 +12,7 @@ const SingleTestimony = (props) => {
             <h4>{ratings}</h4>
             <p>{description}</p>
             <button onClick={() => props.deleteTestimony(props.id)}>Delete Button</button>
+            <button onClick={() => props.editTestimony(props.id)}>Save Changes</button>
         </React.Fragment>
      );
 }

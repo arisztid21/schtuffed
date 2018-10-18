@@ -27,10 +27,17 @@ handlePost = (title, rating, description, user_id) => {
   axios.post(`/testimonies`, {title, rating, description, user_id})
     .then(res => console.log(res.data))
     .catch(err => console.log(err));
+
 }
 
 handleDelete = (id) => {
   axios.delete(`/testimonies/${id}`)
+  .then(res => console.log(res.data))
+  .catch(err => console.log(err))
+}
+
+handleUpdate = (id, title, rating, description, user_id) => {
+  axios.put(`/testimonies/${id}`, {id, title, rating, description, user_id})
   .then(res => console.log(res.data))
   .catch(err => console.log(err))
 }
@@ -47,7 +54,8 @@ handleDelete = (id) => {
     if(this.props.testimonies) {
     mappedTestimonies = this.props.testimonies.map(testimony => {
       return <SingleTestimony key={testimony.id} {...testimony}
-        deleteTestimony={this.handleDelete} />
+        deleteTestimony={this.handleDelete}
+        editTestimony={this.editTestimony} />
     }) }
     return (
       <div className="testimonies-container">
