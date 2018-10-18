@@ -18,8 +18,18 @@ module.exports = {
 
   update: (req, res) => {
     const db = req.app.get('db')
+<<<<<<< HEAD
     const {params} = req;
     db.update_testimonies([params.id, body.title, body.description, body.rating])
+=======
+    console.log('Axios.put call recieved');
+    console.log('params =========> ',req.params);
+    console.log(req.body);
+    let { params } = req;
+    let { title, description, rating, user_id } = req.body
+    
+    db.update_testimonies([title, description, rating, params.id, user_id])
+>>>>>>> f019929455787a19d2f1d2b3d66d12a2337d36d8
     .then(item => res.status(200).send(item))
     .catch(error => console.log('Unexpected error updating testimony', error))
   },
