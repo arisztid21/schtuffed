@@ -47,8 +47,8 @@ create table Testimonies(
   ,user_id integer references Users(id)
   ,title text not null
   ,description text not null
-  ratings decimal,
-  date_posted text not null
+  ,ratings decimal
+  ,date_posted text not null
 )
 
 select * from Users;
@@ -56,4 +56,4 @@ select * from Reviews;
 select * from Photos;
 select * from Favorite_restaurants;
 select * from Followers;
-select * from Testimonies 
+select * from Testimonies;

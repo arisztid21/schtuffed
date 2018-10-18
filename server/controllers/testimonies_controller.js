@@ -8,8 +8,10 @@ module.exports = {
 
   post: (req, res) => {
     const db = req.app.get('db')
+    const {user_id, title, description, rating} = req.body
+    let date_posted = new Date();
     console.log(req.body)
-    db.create_testimonies([user_id, title, description, ratings, date_posted])
+    db.create_testimonies([user_id, title, description, rating, date_posted])
     .then(item => res.status(200).send(item))
     .catch(error => console.log('Unexpected error posting testimony', error))
   },
