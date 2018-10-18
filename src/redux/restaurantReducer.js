@@ -10,11 +10,11 @@ const initialState = {
 };
 
 //Action Types
-const SET_RESTAURANT_LIST = "SET_RESTAURANT_LIST",
-      SET_CITY_ID         = "SET_CITY_ID",
-      SET_SEARCH_INPUT    = "SET_SEARCH_INPUT",
+const SET_RESTAURANT_LIST    = "SET_RESTAURANT_LIST",
+      SET_CITY_ID            = "SET_CITY_ID",
+      SET_SEARCH_INPUT       = "SET_SEARCH_INPUT",
       SET_RESTAURANT_REVIEWS = "SET_RESTAURANT_REVIEWS",
-      SET_TESTIMONIES = "SET_TESTIMONIES"
+      SET_TESTIMONIES        = "SET_TESTIMONIES";
 
 //Reducer Function
 export default function restaurantReducer(state = initialState, action) {
