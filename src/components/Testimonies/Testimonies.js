@@ -48,6 +48,7 @@ handleToggleEdit = (title, rating, description, id) => {
 }
 
 handleUpdate = (id, title, rating, description, user_id) => {
+  console.log(id, title, rating, description, user_id)
   axios.put(`/testimonies/${id}`, {id, title, rating, description, user_id})
   .then(res => console.log(res.data))
   .catch(err => console.log(err))
@@ -69,7 +70,7 @@ handleUpdate = (id, title, rating, description, user_id) => {
         deleteTestimony={this.handleDelete}
         handleToggleEdit={this.handleToggleEdit}
         handleChange={this.handleChange}
-        editTestimony={this.editTestimony} />
+        editTestimony={this.handleEdit} />
     }) }
     return (
       <div className="testimonies-container">

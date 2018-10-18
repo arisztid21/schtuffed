@@ -12,9 +12,9 @@ const SingleTestimony = (props) => {
             <input name="rating" type="text" value={toggleEdit && props.id == editedTestimony ? stateRating : ratings} onChange={(e) => props.handleChange(e)}/>
             <input name="description" type="text" value={toggleEdit && props.id == editedTestimony ? stateDescription : description} onChange={(e) => props.handleChange(e)}/>
             <button onClick={() => props.deleteTestimony(props.id)}>Delete Button</button>
-            <button onClick={() => props.editTestimony(props.id)}>Save Changes</button>
+            <button onClick={() => props.editTestimony(props.id, stateTitle, stateRating, stateDescription, props.user_id)}>Save Changes</button>
             <button onClick={() => props.handleToggleEdit(title, ratings, description, props.id)}>Edit</button>
-        </React.Fragment>
+        </div>
      );
 }
 
