@@ -10,6 +10,7 @@ create table Users (
     ,username text not null
     ,email text unique not null
     ,created_at text not null
+    ,photos text not null
 );
 
 create table Reviews(
@@ -47,7 +48,7 @@ create table Testimonies(
   ,user_id integer references Users(id)
   ,title text not null
   ,description text not null
-  ,ratings decimal
+  ,ratings integer
   ,date_posted text not null
 )
 
