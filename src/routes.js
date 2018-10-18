@@ -9,7 +9,6 @@ export default (
         <Route path="/restaurant-profile/:id" component={SearchResultsContainer} />
         <Route path="/search/results" component={SearchResultsContainer} />
         <Route exact to path="/" component={Homepage} />
-        <Route path="/testimonies" component={Testimonies} /> 
-
+        <Route path="/user/testimonies" component={Testimonies} /> 
     </Switch>
 )
