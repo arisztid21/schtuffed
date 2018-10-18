@@ -8,9 +8,10 @@ module.exports = {
   },
   getUserReviews: (req, res) => {
     const db = req.app.get('db');
-    db.get_profile_reviews()
+    console.log(req.params)
+    db.get_profile_reviews(req.params.id)
       .then(userReviews => {
-        console.log(userReviews);
+        console.log(userReviews)
         res.status(200).send(userReviews)
       })
       .catch(err => console.log('Err in getUserReviews', err));

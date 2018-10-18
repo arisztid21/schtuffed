@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import SingleReview from '../RestaurantReviews/SingleReview'
-import axios from 'axios';
+import ProfileReview from './ProfileReview';
+import axios from 'axios'
 
 class Profile extends Component {
   constructor() {
@@ -16,19 +16,22 @@ class Profile extends Component {
       this.setState({
         userProfile: res.data
       })
-    
-  })
-}
+    })
+  }
 
   render () {
-    const displayedReviews = this.state.userProfile.map(review => {
-      console.log(review)
-      return <SingleReview key={review.id} {...review} />
-    })
+
+    if (this.state.userProfile) {
+      var displayedReviews = this.state.userProfile.map(review => {
+        console.log(review)
+        return <ProfileReview key={review.user_id} {...review} />
+      })
+    }
+
 
     return (
       <div className="profile-container">
-        {displayedReviews}
+        {this.state.userProfile ? displayedReviews : "Loading..."}
       </div>
     )
   }
