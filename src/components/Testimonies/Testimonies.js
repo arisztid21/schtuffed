@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {setTestimonies} from '../../redux/restaurantReducer'
 import axios from 'axios'
+import SingleTestimony from '../SingleTestimony/SingleTestimony';
 
 class Testimonies extends Component {
   constructor(props) {
@@ -35,7 +36,11 @@ handlePost = (title, rating, description, user_id) => {
       //Date Posted (08/18)
       //User - Profile Thumbnail Component
     console.log(this.state, this.props)
-
+    let mappedTestimonies;
+    if(this.props.testimonies) {
+    mappedTestimonies = this.props.testimonies.map(testimony => {
+      return <SingleTestimony {...testimony} />
+    }) }
     return (
       <div className="testimonies-container">
         Testimonies
@@ -45,6 +50,7 @@ handlePost = (title, rating, description, user_id) => {
           <input name="description" type="text" placeholder='Description' onChange={(e) => this.handleChange(e)} />
           <button onClick={() => this.handlePost(this.state.title, this.state.rating, this.state.description, this.props.user.id)}>Submit Testimonial</button>
         </form>
+        {this.props.testimonies ? mappedTestimonies : 'Loading...'}
       </div>
     )
   }
