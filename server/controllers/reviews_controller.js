@@ -19,7 +19,9 @@ module.exports = {
       res.status(200).send(reviews)})
     .catch(error => console.log('Unexpected error in retrieving reviews for this restaurant', error))
   },
-
+  getUserReviews: (req, res) => {
+    
+  },
   post: (req, res) => {
     const db = req.app.get('db')
     console.log(req.body)

@@ -71,7 +71,11 @@ handleUpdate = (id, title, rating, description, user_id) => {
         deleteTestimony={this.handleDelete}
         handleToggleEdit={this.handleToggleEdit}
         handleChange={this.handleChange}
+<<<<<<< HEAD
         editTestimony={this.handleEdit} />
+=======
+        editTestimony={this.handleUpdate} />
+>>>>>>> 40aca1179231cd229705da8bbefa56a8d990330e
     }) }
     return (
       <div className="testimonies-container">
