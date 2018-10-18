@@ -10,7 +10,9 @@ class Testimonies extends Component {
     this.state = {
       title: null,
       rating: null,
-      description: null
+      description: null,
+      toggleEdit: false,
+      editedTestimony: null
     }
   }
 
@@ -34,20 +36,32 @@ handleDelete = (id) => {
   .then(res => console.log(res.data))
   .catch(err => console.log(err))
 }
+handleToggleEdit = (title, rating, description, id) => {
+  this.setState({
+      title,
+      rating,
+      description,
+      toggleEdit: !this.state.toggleEdit,
+      editedTestimony: id
+  })
+}
 
   render () {
-    //POST
-      //Title
-      //Description
-      //Rating
-      //Date Posted (08/18)
-      //User - Profile Thumbnail Component
     console.log(this.state, this.props)
     let mappedTestimonies;
     if(this.props.testimonies) {
     mappedTestimonies = this.props.testimonies.map(testimony => {
-      return <SingleTestimony key={testimony.id} {...testimony}
-        deleteTestimony={this.handleDelete} />
+      return <SingleTestimony 
+        key={testimony.id} 
+        {...testimony}
+        stateTitle={this.state.title}
+        stateRating={this.state.rating}
+        stateDescription={this.state.description}
+        toggleEdit={this.state.toggleEdit}
+        editedTestimony={this.state.editedTestimony}
+        deleteTestimony={this.handleDelete}
+        handleToggleEdit={this.handleToggleEdit}
+        handleChange={this.handleChange} />
     }) }
     return (
       <div className="testimonies-container">
