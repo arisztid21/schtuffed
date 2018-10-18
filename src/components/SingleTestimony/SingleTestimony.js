@@ -2,9 +2,13 @@ import React from 'react';
 
 const SingleTestimony = (props) => {
     console.log(props);
+    let { title, ratings, description, date_posted } = props;
     return ( 
         <React.Fragment>
-            Single Testi
+            <h4>{title}</h4>
+            <h4>{date_posted}</h4>
+            <h4>{ratings}</h4>
+            <p>{description}</p>
         </React.Fragment>
      );
 }

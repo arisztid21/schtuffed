@@ -26,6 +26,8 @@ module.exports = {
   delete: (req, res) => {
     const db = req.app.get('db')
     const { params } = req;
+    console.log('Axios.delete call recieved');
+    console.log('params =========> ',params);
     db.delete_testimonies([params.id])
     .then(item => res.status(200).send(item))
     .catch(error => console.log('Unexpected error deleting testimony', error))
