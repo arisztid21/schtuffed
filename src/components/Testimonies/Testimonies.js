@@ -28,6 +28,13 @@ handlePost = (title, rating, description, user_id) => {
     .then(res => console.log(res.data))
     .catch(err => console.log(err));
 }
+
+handleDelete = (id) => {
+  axios.delete(`/testimonies/${id}`)
+  .then(res => console.log(res.data))
+  .catch(err => console.log(err))
+}
+
   render () {
     //POST
       //Title
@@ -39,7 +46,8 @@ handlePost = (title, rating, description, user_id) => {
     let mappedTestimonies;
     if(this.props.testimonies) {
     mappedTestimonies = this.props.testimonies.map(testimony => {
-      return <SingleTestimony {...testimony} />
+      return <SingleTestimony {...testimony}
+        deleteTestimony={this.handleDelete} />
     }) }
     return (
       <div className="testimonies-container">

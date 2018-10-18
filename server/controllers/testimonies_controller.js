@@ -18,7 +18,7 @@ module.exports = {
 
   update: (req, res) => {
     const db = req.app.get('db')
-    db.update_testimonies([params.id, body.title, body.description, body.ratings])
+    db.update_testimonies([params.id, body.title, body.description, body.rating])
     .then(item => res.status(200).send(item))
     .catch(error => console.log('Unexpected error updating testimony', error))
   },
