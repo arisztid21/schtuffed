@@ -46,7 +46,7 @@ handleDelete = (id) => {
     let mappedTestimonies;
     if(this.props.testimonies) {
     mappedTestimonies = this.props.testimonies.map(testimony => {
-      return <SingleTestimony {...testimony}
+      return <SingleTestimony key={testimony.id} {...testimony}
         deleteTestimony={this.handleDelete} />
     }) }
     return (
