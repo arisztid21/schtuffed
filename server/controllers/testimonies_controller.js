@@ -8,14 +8,15 @@ module.exports = {
 
   post: (req, res) => {
     const db = req.app.get('db')
-    db.create_testimonies([title, description, rating, ratings, helpful])
+    console.log(req.body)
+    db.create_testimonies([user_id, title, description, ratings, date_posted])
     .then(item => res.status(200).send(item))
     .catch(error => console.log('Unexpected error posting testimony', error))
   },
 
   update: (req, res) => {
     const db = req.app.get('db')
-    db.update_testimonies([params.id, body.title, body.description, body.rating, body.ratings, body.helpful])
+    db.update_testimonies([params.id, body.title, body.description, body.ratings])
     .then(item => res.status(200).send(item))
     .catch(error => console.log('Unexpected error updating testimony', error))
   },
