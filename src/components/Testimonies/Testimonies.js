@@ -24,7 +24,7 @@ class Testimonies extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    testimonies: state.testimonies
+    testimonies: state.restaurants.testimonies
   }
 }
 
