@@ -11,6 +11,8 @@ const FollowButton = (props) => {
     //     //Filler - method will come from redux via props
     // }
     let { id, addFollower, user } = props;
+    console.log(id, user);
+    
     return ( 
         <>
             <button onClick={() => addFollower(user.id, id)}>Follow</button>

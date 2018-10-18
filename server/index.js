@@ -122,6 +122,7 @@ app.delete('/users/profiles/:id', profiles.delete)
 
 /* Restaurant Profile Reviews: reviews displayed on restaurant page. */
 app.get('/restaurants/reviews/:id', reviews.get)
+app.get('/restaurants/profile/reviews/:id', reviews.getRestaurantReviews)
 app.post('/restaurants/reviews/:id', reviews.post)
 app.put('/restaurants/reviews/:id', reviews.update)
 app.delete('/restaurants/reviews/:id', reviews.delete)
@@ -145,10 +146,10 @@ app.post('/api/logout', (req, res) => {
   res.send();
 });
 
-// const path = require('path')
-// app.get('*', (req, res)=>{
-//  res.sendFile(path.join(__dirname, '../build/index.html'));
-// })
+const path = require('path')
+app.get('*', (req, res)=>{
+ res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`));

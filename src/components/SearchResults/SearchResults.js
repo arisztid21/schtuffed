@@ -18,7 +18,7 @@ const SearchResults = (props) => {
         let { restaurant } = restaurantObj;
         return <div key={restaurant.id}>
             <img src={restaurant.thumb} alt={restaurant.name} />
-            <Link to={`/restaurants/${restaurant.id}`}>{restaurant.name}</Link>
+            <Link to={`/restaurant-profile/${restaurant.id}`}>{restaurant.name}</Link>
             <span>Rating: {restaurant.user_rating.aggregate_rating}</span>
             <span> ({restaurant.user_rating.votes}) votes</span>
             <h5>{restaurant.price_range} - {restaurant.cuisines}</h5>

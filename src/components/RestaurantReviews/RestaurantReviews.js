@@ -17,7 +17,7 @@ class RestaurantReviews extends Component {
 
   componentDidMount() {
     console.log(this.props)
-    axios.get(`/restaurants/reviews/${this.props.match.params.id}`).then(res => {
+    axios.get(`/restaurants/profile/reviews/${this.props.match.params.id}`).then(res => {
       console.log(res);
       this.props.setRestaurantReviews(res.data)
     }).catch(error => console.log(error))
@@ -44,14 +44,12 @@ class RestaurantReviews extends Component {
   }
 
   handleDescription = (e) => {
-    console.log(e.target.value)
     this.setState({
       description: e.target.value
     })
   }
 
   handlePhoto = (val) => {
-    console.log(val)
     this.setState({
       review_photos: val
     })
@@ -62,12 +60,7 @@ class RestaurantReviews extends Component {
     const {restaurantReviews, user} = this.props;
     const {description, ratings, review_photos} = this.state
 
-    console.log(restaurantReviews)
-    console.log('state======', this.state)
-
     let displayedReviews = restaurantReviews.map( (review, i) => {
-      console.log(review);
-      
       return <SingleReview key={i} {...review} />
     })
 
@@ -91,7 +84,7 @@ class RestaurantReviews extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.restaurantReviews)
+  console.log(state.restaurants.restaurantReviews)
   console.log(state)
   let { user } = state.users
   return {
