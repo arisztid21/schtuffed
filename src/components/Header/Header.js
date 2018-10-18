@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Header = (props) => {
     const login = () => {
@@ -14,6 +15,7 @@ const Header = (props) => {
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/search/results">Results(Test)</Link>
+                {props.user && <Link to={`/user/profile/${props.user.id}`}>Profile(Test)</Link>}
             </nav>
             <div className="login-signup">
                 <button onClick={login}>Log In</button>
@@ -22,5 +24,11 @@ const Header = (props) => {
         </header>
      );
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.users.user
+    }
+}
  
-export default Header;
+export default connect(mapStateToProps, {})(Header);
