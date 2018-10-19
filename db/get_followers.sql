@@ -1,0 +1,1 @@
+select * from followers join users on (user_id = user.id) where user_id = $1;

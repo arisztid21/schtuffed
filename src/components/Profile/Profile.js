@@ -14,24 +14,28 @@ class Profile extends Component {
   componentDidMount() {
     this.getProfile()
     this.getReviews()
+    this.getFollowers();
   }
 
-  getReviews = (id) => {
+  getReviews = () => {
     axios.get(`/users/profiles/reviews/${this.props.match.params.id}`).then (res => {
-      console.log(res.data)
       this.setState({
         userReviews: res.data
       })
     })
   }
 
-  getProfile = (id) => {
+  getProfile = () => {
     axios.get(`/users/profiles/${this.props.match.params.id}`).then (res => {
-      console.log(res.data)
       this.setState({
         userProfile: res.data
       })
     })
+  }
+  getFollowers = () => {
+    axios.get(`/users/followers/${this.props.match.params.id}`)
+      .then(res => console.log('FOLLOWERS', res))
+      .catch(err => console.log('Err in getFollowers', err));
   }
 
 
@@ -39,7 +43,6 @@ class Profile extends Component {
 
     if (this.state.userReviews) {
       var displayedReviews = this.state.userReviews.map(review => {
-        console.log(review)
         return <ProfileReview key={review.user_id} {...review} />
       })
     }
@@ -50,8 +53,11 @@ class Profile extends Component {
         <div className="profiledetails-container">
           {this.state.userProfile ? this.state.userProfile[0].username : "Loading..."}
           <img src={this.state.userProfile ? this.state.userProfile[0].photos : "Loading..."} /> 
-
-
+          <ul>
+            <li>
+              Followers
+            </li>
+          </ul>
         </div>
         <div className="review-container">
           {this.state.userProfile ? displayedReviews : "Loading..."}
