@@ -75,8 +75,11 @@ function storeUserInfoDatabase (response) {
         response.data.picture
       ];
       return db.create_user(userArray).then(newUser => {
-      req.session.user = newUser[0];
-      res.redirect('/');
+        //ADD user_id to Profile Table HERE!!
+        db.create_profile(newUser[0].id).then(() => console.log('Successfully created Profile'))
+          .catch(err => console.log('Err in create_profile', err));
+        req.session.user = newUser[0];
+        res.redirect('/');
       }).catch(error => {
         console.log('error in db.get_user', error);
         res.status(500).send('Unexpected error');

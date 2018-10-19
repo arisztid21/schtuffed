@@ -59,10 +59,12 @@ class RestaurantReviews extends Component {
 
     const {restaurantReviews, user} = this.props;
     const {description, ratings, review_photos} = this.state
-
-    let displayedReviews = restaurantReviews.map( (review, i) => {
+    let displayedReviews;
+    if(restaurantReviews){
+      displayedReviews = restaurantReviews.map( (review, i) => {
       return <SingleReview key={i} {...review}/>
     })
+  }
 
     return (
       <div className="restaurantreviews-container">
@@ -76,7 +78,7 @@ class RestaurantReviews extends Component {
 
 
         <div className="displayed-reviews">
-          {displayedReviews}
+          {displayedReviews ? displayedReviews : 'Loading...'}
         </div>
       </div>
     )
