@@ -59,7 +59,7 @@ function storeUserInfoDatabase (response) {
   console.log('store user info db')
   const auth0Id = response.data.sub;
   console.log(response.data);
-  
+
   const db = req.app.get('db');
   return db.get_user(auth0Id).then(users => {
     if(users.length) {
@@ -75,9 +75,6 @@ function storeUserInfoDatabase (response) {
         response.data.picture
       ];
       return db.create_user(userArray).then(newUser => {
-        //ADD user_id to Profile Table HERE!!
-        db.create_profile(newUser[0].id).then(() => console.log('Successfully created Profile'))
-          .catch(err => console.log('Err in create_profile', err));
         req.session.user = newUser[0];
         res.redirect('/');
       }).catch(error => {
@@ -122,9 +119,7 @@ app.delete('/restaurants/photos/:id', photos.delete)
 
 /* User Profile Controller: profile page for each user. */
 app.get('/users/profiles/:id', profiles.get)
-app.post('/users/profiles', profiles.post)
-app.put('/users/profiles/:id', profiles.update)
-app.delete('/users/profiles/:id', profiles.delete)
+
 // User Profile Reviews: reviews displayed on profile page
 app.get('/users/profiles/reviews/:id', profiles.getUserReviews)
 /* Restaurant Profile Reviews: reviews displayed on restaurant page. */

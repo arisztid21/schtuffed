@@ -16,7 +16,6 @@ module.exports = {
       })
       .catch(err => console.log('Err in getUserReviews', err));
   },
-
   post: (req, res) => {
     const db = req.app.get('db')
     db.create_profiles([name, join_date, followers, reviews, photos, saved_restaurants])
