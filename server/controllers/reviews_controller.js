@@ -21,13 +21,9 @@ module.exports = {
   },
   post: (req, res) => {
     const db = req.app.get('db')
-    console.log(req.body)
     const {ratings, description, user_id, review_photos} = req.body.reviewInput
-    console.log(req.params)
     const {id} = req.params
     let date_posted = new Date();
-    console.log(description, ratings, 'heyyyyyy')
-    console.log('it was put in the databse', review_photos)
     db.create_reviews([ratings, description, date_posted, user_id, id])
     .then(res => db.add_review_photos([res[0].restaurant_id, res[0].user_id, review_photos, res[0].id]))
     .then(review => res.status(200).send(review))

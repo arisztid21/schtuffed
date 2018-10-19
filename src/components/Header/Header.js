@@ -15,6 +15,7 @@ const Header = (props) => {
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/search/results">Results(Test)</Link>
+                {props.user && <Link to={`/user/profile/${props.user.id}`}>Profile(Test)</Link>}
                 <Link to="/shop">Shop</Link>
                 <Link to="/cart">Cart</Link>
             </nav>
