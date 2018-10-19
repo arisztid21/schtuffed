@@ -56,18 +56,30 @@ create table Products(
     id serial primary key
     ,item_name text not null
     ,item_price integer not null
-    ,quantity integer not null
-    ,order_id integer references orders(id)
+    ,quantity integer
     ,item_image text not null
+)
+
+create table Cart(
+    id serial primary key
+    ,product_id integer references products(id)
+    ,user_id integer references Users(id)
+    ,total integer 
+    ,quantity integer
 )
 
 create table Orders (
     id serial primary key
     ,product_id integer references products(id)
     ,user_id integer references Users(id)
+    ,cart_id integer references Cart(id)
     ,purchase_date text not null
     ,total integer not null
 )
+
+insert into products(item_name, item_price, quantity, item_image) values("hat", 15, 10, "https://res.cloudinary.com/arisztid21/image/upload/v1539896286/Screen_Shot_2018-10-18_at_11.39.14_AM.png");
+insert into products(item_name, item_price, quantity, item_image) values("bottle", 15, 30, "https://res.cloudinary.com/arisztid21/image/upload/v1539896307/Screen_Shot_2018-10-18_at_11.43.36_AM.png");
+insert into products(item_name, item_price, quantity, item_image) values("tee shirt", 25, 100, "https://res.cloudinary.com/arisztid21/image/upload/v1539896316/Screen_Shot_2018-10-18_at_11.47.00_AM.png");
 
 select * from Users;
 select * from Reviews;
@@ -77,3 +89,4 @@ select * from Followers;
 select * from Testimonies;
 select * from Products;
 select * from Orders;
+select * from Cart
