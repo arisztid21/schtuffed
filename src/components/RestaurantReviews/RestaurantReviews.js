@@ -56,13 +56,14 @@ class RestaurantReviews extends Component {
   }
 
   render () {
+    console.log(this.props)
 
     const {restaurantReviews, user} = this.props;
     const {description, ratings, review_photos} = this.state
     let displayedReviews;
     if(restaurantReviews){
       displayedReviews = restaurantReviews.map( (review, i) => {
-      return <SingleReview key={i} {...review}/>
+      return <SingleReview key={i} match={this.props.match} {...review}/>
     })
   }
 

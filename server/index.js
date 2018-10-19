@@ -117,7 +117,7 @@ app.post('/restaurants/photos', photos.post)
 app.put('/restaurants/photos/:id', photos.update)
 app.delete('/restaurants/photos/:id', photos.delete)
 
-/* User Profile Controller: profile page for each user. */
+/* User Profile Controller: profile details for each user. */
 app.get('/users/profiles/:id', profiles.get)
 
 // User Profile Reviews: reviews displayed on profile page

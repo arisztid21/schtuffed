@@ -1,5 +1,7 @@
 module.exports = {
   get: (req, res) => {
+    console.log('hit')
+    console.log('req.params.id:', req.params.id)
     const db = req.app.get('db')
     const {params} = req;
     db.get_profiles([params.id])

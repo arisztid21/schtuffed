@@ -49,7 +49,7 @@ class Profile extends Component {
       <div className="profile-container">
         <div className="profiledetails-container">
           {this.state.userProfile ? this.state.userProfile[0].username : "Loading..."}
-          <img src={this.state.userProfile ? this.state.userProfile[0].photos : "Loading..."} /> 
+          <img src={this.state.userProfile ? this.state.userProfile[0].photos : "Loading..."} />
 
 
         </div>
