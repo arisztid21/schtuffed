@@ -5,9 +5,11 @@ import SearchResultsContainer from './components/SearchResultsContainer/SearchRe
 import Testimonies from './components/Testimonies/Testimonies'
 import Shop from './components/Shop/Shop';
 import Cart from './components/Shop/Cart';
+import Profile from './components/Profile/Profile';
 
 export default (
     <Switch>
+        <Route path="/user/profile/:id" component={Profile} />
         <Route path="/restaurant-profile/:id" component={SearchResultsContainer} />
         <Route path="/search/results" component={SearchResultsContainer} />
         <Route exact to path="/" component={Homepage} />
