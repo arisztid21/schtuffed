@@ -7,7 +7,8 @@ class Profile extends Component {
     super()
     this.state = {
       userProfile: null,
-      userReviews: null
+      userReviews: null,
+      userFollowers: null
     }
   }
 
@@ -34,16 +35,30 @@ class Profile extends Component {
   }
   getFollowers = () => {
     axios.get(`/users/followers/${this.props.match.params.id}`)
-      .then(res => console.log('FOLLOWERS', res))
+      .then(res => {
+        console.log('FOLLOWERS', res)
+        this.setState({
+          userFollowers: res.data
+        })
+      })
       .catch(err => console.log('Err in getFollowers', err));
   }
 
 
   render () {
+console.log(this.state);
 
     if (this.state.userReviews) {
       var displayedReviews = this.state.userReviews.map(review => {
         return <ProfileReview key={review.user_id} {...review} />
+      })
+    }
+    if(this.state.userFollowers) {
+      var displayedFollowers = this.state.userFollowers.map(follower => {
+        return <div className="profile-followers-container">
+            <h2>{follower.username}</h2>
+            <img src={follower.photos} alt={follower.name} />
+        </div>
       })
     }
 
@@ -59,6 +74,7 @@ class Profile extends Component {
             </li>
           </ul>
         </div>
+        {this.state.userFollowers && displayedFollowers}
         <div className="review-container">
           {this.state.userProfile ? displayedReviews : "Loading..."}
         </div>

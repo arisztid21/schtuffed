@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 class ProfileReview extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class ProfileReview extends Component {
         return ( 
             <div className="reviews-module">
                 <div className="reviews-restaurant-thumb">
-                <h2>{this.state.restaurant ? this.state.restaurant.name : 'Loading...'}</h2>
+                <h2>{this.state.restaurant ? <Link to={`/restaurant-profile/${this.props.restaurant_id}`}>{this.state.restaurant.name}</Link> : 'Loading...'}</h2>
                 </div>
                 <div className="reviews-description">
                 <h3>{this.props.ratings}</h3>
