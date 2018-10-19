@@ -14,7 +14,8 @@ const Header = (props) => {
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/search/results">Results(Test)</Link>
-                <Link to="/Shop">Shop</Link>
+                <Link to="/shop">Shop</Link>
+                <Link to="/cart">Cart</Link>
             </nav>
             <div className="login-signup">
                 <button onClick={login}>Log In</button>
