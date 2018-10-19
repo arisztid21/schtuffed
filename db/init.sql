@@ -52,9 +52,28 @@ create table Testimonies(
   ,date_posted text not null
 )
 
+create table Products(
+    id serial primary key
+    ,item_name text not null
+    ,item_price integer not null
+    ,quantity integer not null
+    ,order_id integer references orders(id)
+    ,item_image text not null
+)
+
+create table Orders (
+    id serial primary key
+    ,product_id integer references products(id)
+    ,user_id integer references Users(id)
+    ,purchase_date text not null
+    ,total integer not null
+)
+
 select * from Users;
 select * from Reviews;
 select * from Photos;
 select * from Favorite_restaurants;
 select * from Followers;
 select * from Testimonies;
+select * from Products;
+select * from Orders;
