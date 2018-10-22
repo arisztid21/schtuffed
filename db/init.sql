@@ -3,6 +3,11 @@ drop table if exists Reviews cascade;
 drop table if exists Photos cascade;
 drop table if exists Favorite_Restaurants cascade;
 drop table if exists Followers cascade;
+drop table if exists Testimonies cascade;
+drop table if exists Products cascade;
+drop table if exists Cart cascade;
+drop table if exists Orders cascade;
+
 
 create table Users (
     id serial primary key
@@ -39,18 +44,18 @@ create table Favorite_restaurants(
 
 create table Followers(
     id serial primary key
-    ,friends_id integer[]
+    ,friends_id integer
     ,user_id integer references Users(id)
 );
 
 create table Testimonies(
-  id serial primary key
-  ,user_id integer references Users(id)
-  ,title text not null
-  ,description text not null
-  ,ratings integer
-  ,date_posted text not null
-)
+    id serial primary key
+    ,user_id integer references Users(id)
+    ,title text not null
+    ,description text not null
+    ,ratings integer
+    ,date_posted text not null
+);
 
 create table Products(
     id serial primary key
@@ -58,7 +63,7 @@ create table Products(
     ,item_price integer not null
     ,quantity integer
     ,item_image text not null
-)
+);
 
 create table Cart(
     id serial primary key
@@ -66,7 +71,7 @@ create table Cart(
     ,user_id integer references Users(id)
     ,total integer 
     ,quantity integer
-)
+);
 
 create table Orders (
     id serial primary key
@@ -75,11 +80,14 @@ create table Orders (
     ,cart_id integer references Cart(id)
     ,purchase_date text not null
     ,total integer not null
-)
+);
 
-insert into products(item_name, item_price, quantity, item_image) values("hat", 15, 10, "https://res.cloudinary.com/arisztid21/image/upload/v1539896286/Screen_Shot_2018-10-18_at_11.39.14_AM.png");
-insert into products(item_name, item_price, quantity, item_image) values("bottle", 15, 30, "https://res.cloudinary.com/arisztid21/image/upload/v1539896307/Screen_Shot_2018-10-18_at_11.43.36_AM.png");
-insert into products(item_name, item_price, quantity, item_image) values("tee shirt", 25, 100, "https://res.cloudinary.com/arisztid21/image/upload/v1539896316/Screen_Shot_2018-10-18_at_11.47.00_AM.png");
+insert into products(item_name, item_price, quantity, item_image) values('hat', 15, 10, 'https://res.cloudinary.com/arisztid21/image/upload/v1539896286/Screen_Shot_2018-10-18_at_11.39.14_AM.png');
+insert into products(item_name, item_price, quantity, item_image) values('bottle', 15, 30, 'https://res.cloudinary.com/arisztid21/image/upload/v1539896307/Screen_Shot_2018-10-18_at_11.43.36_AM.png');
+insert into products(item_name, item_price, quantity, item_image) values('tee shirt', 25, 100, 'https://res.cloudinary.com/arisztid21/image/upload/v1539896316/Screen_Shot_2018-10-18_at_11.47.00_AM.png');
+
+select r.*, p.review_photos, p.review_id from Reviews r join Photos p on p.review_id = r.id;
+
 
 select * from Users;
 select * from Reviews;
@@ -88,5 +96,5 @@ select * from Favorite_restaurants;
 select * from Followers;
 select * from Testimonies;
 select * from Products;
+select * from Cart;
 select * from Orders;
-select * from Cart
