@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './homepage.scss';
 import { connect } from 'react-redux';
 import { setRestaurantList, setCityId, setSearchInput } from '../../redux/restaurantReducer';
 import { setUser } from '../../redux/userReducer';
@@ -20,17 +21,18 @@ class Homepage extends Component {
     render() {
         let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = this.props
         return (
-            <React.Fragment>
+            <div className="homepage">
                 <h1>Welcome to SCHTUFFED.COM </h1>
                 <form onSubmit={(e) => e.preventDefault()}>
-                    <input onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="italian, burgers, vegetarian..." />
-                    <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder="city or zip..." />
+                    <input id="query" onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="italian, burgers, vegetarian..." />
+                    <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder="city name..." />
                     <button onClick={() => this.handleSearch()}><span role="img">&#x1F50E;</span></button>
                 </form>
+                {/* <button onClick={() => this.handleSearch()}><span role="img">&#x1F50E;</span></button> */}
 
                 <Link to={'/user/testimonies'}><h3>What are people saying about Schtuffed?</h3></Link>
 
-            </React.Fragment>
+            </div>
          );
     }
 }

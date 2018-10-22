@@ -1,0 +1,49 @@
+@import '../../index';
+
+.homepage {
+    background: url($homepage-image) no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    //HomePage Form
+    form {
+        background: $input-bColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        // padding: 5px;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+
+        #query {
+            background: $input-bColor;
+            border: none;
+            border-right: 1px solid;
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: $border-radius;
+            padding: 12px 20px;
+        }
+        input:nth-child(2) {
+            background: $input-bColor;
+            border: none;
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+            padding: 12px 20px;
+        }
+        button {
+            background: $primary-color;
+            border: none;
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+            height: 47px;
+            width: 47px;
+            // &:after {
+            //     content: "one";
+            // }
+        }
+    }
+}

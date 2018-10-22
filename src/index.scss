@@ -1,0 +1,11 @@
+@import 'Reset';
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #4bbf6b;
+$homepage-image: 'https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_large_assets/6259bbd502d7/assets/img/home/hero_photos/lfNjhsMKDzqKndhTcb_Xfw.jpg';
+$input-bColor: #fff;
+$border-radius: 3px;
+
+
+body {
+    font-family: $font-stack;
+}
