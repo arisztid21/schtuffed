@@ -39,7 +39,7 @@ create table Favorite_restaurants(
 
 create table Followers(
     id serial primary key
-    ,friends_id integer[]
+    ,friends_id integer
     ,user_id integer references Users(id)
 );
 
