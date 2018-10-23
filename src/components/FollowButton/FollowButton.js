@@ -10,20 +10,26 @@ const FollowButton = (props) => {
         
     //     //Filler - method will come from redux via props
     // }
-    let { id, addFollower, user } = props;
-    console.log(id, user);
+    let { id, addFollower, user, followers } = props;
+    console.log(id, user, followers);
+    let didNotFollow;
+    if (followers) {
+        didNotFollow = followers.findIndex(follower => follower.id == id);
+        console.log(didNotFollow);
+    }
     
     return ( 
         <>
-            <button onClick={() => addFollower(user.id, id)}>Follow</button>
+        {didNotFollow == -1 && user.id !== id ? <button onClick={() => addFollower(user.id, id)}>Follow</button> : user.id !== id ? <button>Unfollow</button> : null  }
         </>
      );
 }
 
 const mapStateToProps = state => {
-    let { user } = state.users
+    let { user, followers } = state.users
     return {
-        user
+        user,
+        followers
     }
 }
 const mapDispatchToProps = {

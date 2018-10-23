@@ -63,6 +63,8 @@ function storeUserInfoDatabase (response) {
   const db = req.app.get('db');
   return db.get_user(auth0Id).then(users => {
     if(users.length) {
+      console.log(users[0]);
+      
       const user = users[0];
       req.session.user = user;
       res.redirect('/');

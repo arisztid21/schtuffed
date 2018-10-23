@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const Header = (props) => {
     const login = () => {
         const redirectUri = encodeURIComponent(`${window.location.origin}/auth/callback`);
         const scope = encodeURIComponent('openid profile email');
         window.location = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/authorize?client_id=${process.env.REACT_APP_AUTH0_CLIENT_ID}&scope=${scope}&redirect_uri=${redirectUri}&response_type=code`;
+      }
+      const logout = () => {
+          axios.post('/api/logout').then(() => console.log('Logged out'));
       }
     return ( 
         <header>
@@ -20,8 +24,8 @@ const Header = (props) => {
                 <Link to="/cart">Cart</Link>
             </nav>
             <div className="login-signup">
-                <button onClick={login}>Log In</button>
-                <button>Sign Up</button>
+                {props.user ? <button onClick={logout}>Logout</button> : <React.Fragment> <button onClick={login}>Log In</button>
+                <button onClick={login}>Sign Up</button> </React.Fragment> }
             </div>
         </header>
      );

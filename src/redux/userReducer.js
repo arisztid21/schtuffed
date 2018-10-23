@@ -8,7 +8,8 @@ const initialState = {
 
 const SET_USER          = "SET_USER",
       SET_FAVORITES     = "SET_FAVORITES",
-      ADD_FOLLOWER      = "ADD_FOLLOWER";
+      ADD_FOLLOWER      = "ADD_FOLLOWER",
+      SET_FOLLOWERS     = 'SET_FOLLOWERS';
 
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
@@ -20,6 +21,8 @@ export default function userReducer(state = initialState, action) {
             return {...state, favoriteRestaurants: action.payload}
         case `${ADD_FOLLOWER}_FULFILLED`:
         console.log(action.payload);
+            return {...state }
+        case `${SET_FOLLOWERS}_FULFILLED`:
             return {...state, followers: action.payload}
         default:
             return {...state}
@@ -44,5 +47,13 @@ export function addFollower(user_id, follower_id) {
     return {
         type: ADD_FOLLOWER,
         payload: axios.post(`/users/${user_id}/followers`, {follower_id}).then(res => console.log(res)).catch(err => console.log('Err in ADD_FOLLOWER', err))
+    }
+}
+export function setFollowers(user_id) {
+    console.log(user_id);
+    
+    return {
+        type: SET_FOLLOWERS,
+        payload: axios.get(`/users/followers/${user_id}`).then(res => res.data).catch(err => console.log('Err in getFollowers', err))
     }
 }
