@@ -22,14 +22,15 @@ class Testimonies extends Component {
     })
   }
 handleChange = (e) => {
-  console.log(e.target.value);
   this.setState({[e.target.name]: e.target.value})
 }
 handlePost = (title, rating, description, user_id) => {
   axios.post(`/testimonies`, {title, rating, description, user_id})
-    .then(res => console.log(res.data))
+    .then(res => this.props.setTestimonies(res.data))
+    .then(axios.get('/testimonies').then(res => {
+      this.props.setTestimonies(res.data)
+    }))
     .catch(err => console.log(err));
-
 }
 
 handleDelete = (id) => {
