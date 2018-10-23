@@ -46,16 +46,26 @@ export default function restaurantReducer(state = initialState, action) {
         case SET_LOWEST_RATING:
               return {...state, restaurantList: action.payload}
         case SET_PRICE_ONE:
-              const priceFilterOne = state.restaurantList.filter(restaurant => {
-                return restaurant.restaurant.price_range === 1
+              let priceFilterOne = state.restaurantList.filter(restaurant => {
+                return restaurant.restaurant.price_range == 1
               })
+              console.log(priceFilterOne)
               return {...state, restaurantList: priceFilterOne}
         case SET_PRICE_TWO:
-              return {...state, restaurantList: action.payload}
+              let priceFilterTwo = state.restaurantList.filter(restaurant => {
+                return restaurant.restaurant.price_range == 2
+              })
+              return {...state, restaurantList: priceFilterTwo}
         case SET_PRICE_THREE:
-              return {...state, restaurantList: action.payload}
+              let priceFilterThree = state.restaurantList.filter(restaurant => {
+                return restaurant.restaurant.price_range == 3
+              })
+              return {...state, restaurantList: priceFilterThree}
         case SET_PRICE_FOUR:
-              return {...state, restaurantList: action.payload}
+              let priceFilterFour= state.restaurantList.filter(restaurant => {
+                return restaurant.restaurant.price_range == 4
+              })
+              return {...state, restaurantList: priceFilterFour}
         default:
             return {...state}
     }
@@ -132,27 +142,24 @@ export function setLowestRating(restaurantList) {
 
 export function setPriceOne (restaurantList) {
   return {
-    type: SET_PRICE_ONE,
+    type: SET_PRICE_ONE
   }
 }
 
 export function setPriceTwo (restaurantList) {
   return {
-    type: SET_PRICE_TWO,
-    payload: restaurantList
+    type: SET_PRICE_TWO
   }
 }
 
 export function setPriceThree (restaurantList) {
   return {
-    type: SET_PRICE_THREE,
-    payload: restaurantList
+    type: SET_PRICE_THREE
   }
 }
 
 export function setPriceFour (restaurantList) {
   return {
-    type: SET_PRICE_FOUR,
-    payload: restaurantList
+    type: SET_PRICE_FOUR
   }
 }
