@@ -7,6 +7,7 @@ import { setPriceOne, setPriceTwo, setPriceThree, setPriceFour } from '../../red
 const SearchFilter = (props) => {
     console.log(props);
 
+
     const sortHighest = () => {
       axios.get('https://developers.zomato.com/api/v2.1/search?q=Italian&count=3&sort=rating&order=desc', {
           headers: {"user-key": "6ce2f2b32321de9306bcc12a5832bceb"}
@@ -70,13 +71,7 @@ const SearchFilter = (props) => {
               <div className="searchfilter-sortby">
                 <h1>Sort By</h1>
                 <button onClick={sortHighest}>Highest Rated</button>
-                <button onClick={sortLowest}>Lowest Rated</button>
-              </div>
-              <div className="searchfilter-distance">
-                <h1>Distance</h1>
-                <h2>Driving (5 mi.)</h2>
-                <h2>Biking (2 mi.)</h2>
-                <h2>Walking (1 mi)</h2>
+                <button onClick={sortLowest}>Lowest Rated</button> 
               </div>
               <div className="searchfilter-price">
                 <h1>Price</h1>
