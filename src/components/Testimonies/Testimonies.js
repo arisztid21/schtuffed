@@ -63,6 +63,7 @@ handleUpdate = (id, title, rating, description, user_id) => {
       return <SingleTestimony
         key={testimony.id}
         {...testimony}
+        user={this.props.user}
         stateTitle={this.state.title}
         stateRating={this.state.rating}
         stateDescription={this.state.description}
@@ -76,12 +77,14 @@ handleUpdate = (id, title, rating, description, user_id) => {
     return (
       <div className="testimonies-container">
         Testimonies
+        {this.props.user &&
         <form onSubmit={(e) => e.preventDefault()}>
           <input name="title" type="text" placeholder={'Title...'} onChange={(e) => this.handleChange(e)} />
           <input name="rating" type="text" placeholder={'Rating...'} onChange={(e) => this.handleChange(e)} />
           <input name="description" type="text" placeholder='Description' onChange={(e) => this.handleChange(e)} />
           <button onClick={() => this.handlePost(this.state.title, this.state.rating, this.state.description, this.props.user.id)}>Submit Testimonial</button>
         </form>
+        }
         {this.props.testimonies ? mappedTestimonies : 'Loading...'}
       </div>
     )

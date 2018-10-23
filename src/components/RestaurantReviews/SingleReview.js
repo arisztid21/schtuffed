@@ -7,7 +7,7 @@ const SingleReview = (props) => {
   return (
     <div className="reviews-module">
     <div className="reviews-profile-thumb">
-      <FollowButton id={props.user_id} />
+    {props.user &&  <FollowButton id={props.user_id} followers={props.followers}/> }
     </div>
     <div className="profilethumb-singlereview">
     <ProfileThumb id={props.user_id}
