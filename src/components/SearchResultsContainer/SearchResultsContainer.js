@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setFavorites } from '../../redux/userReducer';
+import { setHighestRating, setLowestRating, setPriceOne, setPriceTwo, setPriceThree, setPriceFour } from '../../redux/restaurantReducer';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchFilter from '../SearchFilter/SearchFilter';
 import RestaurantProfile from '../RestaurantProfile/RestaurantProfile';
@@ -11,8 +12,8 @@ const SearchResultsContainer = (props) => {
     const searchFilter = withRestaurantData(SearchFilter, {...props});
     const searchResults = withRestaurantData(SearchResults, {...props});
     const restaurantProfile = withRestaurantData(RestaurantProfile, {...props});
-    
-    return ( 
+
+    return (
         <React.Fragment>
             {props.match.path == '/search/results' ? props.isLoading ? <h1>Loading</h1> : <>{searchFilter}{searchResults}</> : null}
             {props.match.path == '/restaurant-profile/:id' && restaurantProfile}
@@ -31,7 +32,13 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    setFavorites
+    setFavorites,
+    setHighestRating,
+    setLowestRating,
+    setPriceOne,
+    setPriceTwo,
+    setPriceThree,
+    setPriceFour
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsContainer);

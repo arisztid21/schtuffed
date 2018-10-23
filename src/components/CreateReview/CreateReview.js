@@ -21,9 +21,6 @@ export default class CreateReview extends Component {
             formData.append('timestamp', response.data.timestamp)
             formData.append('file', file[0]);
             console.log(response.data)
-            for(var pair of formData.entries()) {
-                     console.log(pair); 
-                  }
             axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
                 console.log('cloud response----',response)
                     this.props.handlePhoto(response.data.secure_url)

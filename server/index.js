@@ -15,7 +15,7 @@ const reviews = require('./controllers/reviews_controller')
 const testimonies = require('./controllers/testimonies_controller')
 const favorites = require('./controllers/favorites_controller')
 const followers = require('./controllers/followers_controller')
-const photos = require('./controllers/photos_controller')
+const shop = require('./controllers/shop_controller')
 
 app.use(bodyParser.json())
 app.use( express.static( `${__dirname}/../build` ) )
@@ -105,17 +105,8 @@ app.post('/users/:id/favorites', favorites.post)
 app.get('/users/followers/:id', followers.get)
 app.post('/users/:id/followers', followers.post)
 
-/* User Photos Controller: photos for unique user */
-app.get('/users/photos/:id', photos.get)
-app.post('/users/photos', photos.post)
-app.put('/users/photos/:id', photos.update)
-app.delete('/users/photos/:id', photos.delete)
-
-/* Restaurant Photos Controller: photos for unique restaurant */
-app.get('/restaurants/photos/:id', photos.get)
-app.post('/restaurants/photos', photos.post)
-app.put('/restaurants/photos/:id', photos.update)
-app.delete('/restaurants/photos/:id', photos.delete)
+/* Products Controller: for functionality on shop and cart */
+app.get('/shop', shop.get)
 
 /* User Profile Controller: profile details for each user. */
 app.get('/users/profiles/:id', profiles.get)

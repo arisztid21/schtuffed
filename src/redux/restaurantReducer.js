@@ -6,7 +6,7 @@ const initialState = {
     searchInput: null,
     isLoading: false,
     restaurantReviews: null,
-    testimonies: null
+    testimonies: null,
 };
 
 //Action Types
@@ -14,7 +14,13 @@ const SET_RESTAURANT_LIST    = "SET_RESTAURANT_LIST",
       SET_CITY_ID            = "SET_CITY_ID",
       SET_SEARCH_INPUT       = "SET_SEARCH_INPUT",
       SET_RESTAURANT_REVIEWS = "SET_RESTAURANT_REVIEWS",
-      SET_TESTIMONIES        = "SET_TESTIMONIES";
+      SET_TESTIMONIES        = "SET_TESTIMONIES",
+      SET_HIGHEST_RATING     = 'SET_HIGHEST_RATING',
+      SET_LOWEST_RATING      = 'SET_LOWEST_RATING',
+      SET_PRICE_ONE          = 'SET_PRICE_ONE',
+      SET_PRICE_TWO          = 'SET_PRICE_TWO',
+      SET_PRICE_THREE        = 'SET_PRICE_THREE',
+      SET_PRICE_FOUR         = 'SET_PRICE_FOUR'
 
 //Reducer Function
 export default function restaurantReducer(state = initialState, action) {
@@ -34,6 +40,22 @@ export default function restaurantReducer(state = initialState, action) {
             return {...state, restaurantReviews: action.payload}
         case SET_TESTIMONIES:
             return {...state, testimonies: action.payload}
+        case SET_HIGHEST_RATING:
+            console.log(action.payload)
+              return {...state, restaurantList: action.payload}
+        case SET_LOWEST_RATING:
+              return {...state, restaurantList: action.payload}
+        case SET_PRICE_ONE:
+              const priceFilterOne = state.restaurantList.filter(restaurant => {
+                return restaurant.restaurant.price_range === 1
+              })
+              return {...state, restaurantList: priceFilterOne}
+        case SET_PRICE_TWO:
+              return {...state, restaurantList: action.payload}
+        case SET_PRICE_THREE:
+              return {...state, restaurantList: action.payload}
+        case SET_PRICE_FOUR:
+              return {...state, restaurantList: action.payload}
         default:
             return {...state}
     }
@@ -46,7 +68,7 @@ export function setRestaurantList(searchInput, cityId, history) {
     //SET &count to 10
     return {
         type: SET_RESTAURANT_LIST,
-        payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=3&sort=rating`, {
+        payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=3`, {
             headers: {"user-key": "6ce2f2b32321de9306bcc12a5832bceb"}
         }).then(res => {
             localStorage.setItem('results', JSON.stringify(res.data.restaurants ))
@@ -89,5 +111,48 @@ export function setTestimonies(testimonies) {
   return {
     type: SET_TESTIMONIES,
     payload: testimonies
+  }
+}
+
+// Set Filtered Restaurant List - Highest Rating
+export function setHighestRating(restaurantList) {
+  console.log(restaurantList)
+  return {
+    type: SET_HIGHEST_RATING,
+    payload: restaurantList
+  }
+}
+
+export function setLowestRating(restaurantList) {
+  return {
+    type: SET_LOWEST_RATING,
+    payload: restaurantList
+  }
+}
+
+export function setPriceOne (restaurantList) {
+  return {
+    type: SET_PRICE_ONE,
+  }
+}
+
+export function setPriceTwo (restaurantList) {
+  return {
+    type: SET_PRICE_TWO,
+    payload: restaurantList
+  }
+}
+
+export function setPriceThree (restaurantList) {
+  return {
+    type: SET_PRICE_THREE,
+    payload: restaurantList
+  }
+}
+
+export function setPriceFour (restaurantList) {
+  return {
+    type: SET_PRICE_FOUR,
+    payload: restaurantList
   }
 }
