@@ -8,12 +8,6 @@ import { Link } from 'react-router-dom'
 class Homepage extends Component {
     componentDidMount() {
         this.props.setUser();
-    //     let timestamp = Math.round((new Date()).getMonth());
-    // console.log(timestamp);
-    // const date = new Date();
-    //     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    //     const dateString = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-    //     console.log('DATE',dateString)
     }
     handleSearch = () => {
         this.props.setRestaurantList(this.props.searchInput, this.props.cityId, this.props.history)

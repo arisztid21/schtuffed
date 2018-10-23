@@ -34,6 +34,10 @@ class RestaurantReviews extends Component {
     console.log(restaurant_id)
     axios.post(`/restaurants/reviews/${restaurant_id}`, {reviewInput}).then( res => {
       this.props.setRestaurantReviews(res.data)
+      .then(axios.get(`/restaurants/profile/reviews/${this.props.match.params.id}`).then(res => {
+        this.props.setRestaurantReviews(res.data)
+      }
+      ))
     }).catch(error => console.log(error))
   }
 
