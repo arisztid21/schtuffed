@@ -9,7 +9,9 @@ class Homepage extends Component {
     componentDidMount() {
         this.props.setUser();
         setTimeout(() => {
-            this.props.setFavorites(this.props.user.id || 0);
+            if(this.props.user) {
+                this.props.setFavorites(this.props.user.id || 0);
+            }
         }, 500)
     }
     handleSearch = () => {
