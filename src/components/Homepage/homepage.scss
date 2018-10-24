@@ -1,13 +1,20 @@
 @import '../../index';
-
+// $primary-color: orange;
 .homepage {
     background: url($homepage-image) no-repeat;
     background-size: cover;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    font-family: Rubik;
+    height: 600px;
+    h1 {
+        margin-bottom: 2em;
+        font-size: 3.5vh;
+        font-weight: 700;
+    }
     //HomePage Form
     form {
         background: $input-bColor;
@@ -15,24 +22,26 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        // padding: 5px;
-        border-top-right-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
-
+        border-radius: $border-radius;
+        width: 70%;
+        #find, #near {
+            color: grey;
+            font-weight: bold;
+            padding-left: 15px;
+        }
         #query {
             background: $input-bColor;
             border: none;
             border-right: 1px solid;
-            border-top-left-radius: $border-radius;
-            border-bottom-left-radius: $border-radius;
+            outline: none;
             padding: 12px 20px;
+            width: 100%;
         }
-        input:nth-child(2) {
-            background: $input-bColor;
-            border: none;
+        #city {
+            @extend #query;
+            border-right: none;
             border-top-right-radius: $border-radius;
             border-bottom-right-radius: $border-radius;
-            padding: 12px 20px;
         }
         button {
             background: $primary-color;
@@ -40,10 +49,16 @@
             border-top-right-radius: $border-radius;
             border-bottom-right-radius: $border-radius;
             height: 47px;
-            width: 47px;
-            // &:after {
-            //     content: "one";
-            // }
+            width: 12%;
         }
     }
+}
+//Testimony Link
+.conditional-testimony-link {
+    color: red;
+    display: block;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 2em;
+    text-align: center;
 }

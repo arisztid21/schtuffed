@@ -22,8 +22,6 @@ const Footer = (props) => {
         <div className="ColumnFour">
           <h2>Contact</h2>
         </div>
-
-
       </div>
     </div>
   )
