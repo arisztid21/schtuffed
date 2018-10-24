@@ -17,7 +17,6 @@ class RestaurantReviews extends Component {
   }
 
   componentDidMount() {
-    console.log('RESTURNr',this.props)
     axios.get(`/restaurants/profile/reviews/${this.props.match.params.id}`).then(res => {
       console.log(res);
       this.props.setRestaurantReviews(res.data)

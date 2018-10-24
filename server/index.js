@@ -108,7 +108,9 @@ app.get('/users/followers/:id', followers.get)
 app.post('/users/:id/followers', followers.post)
 
 /* Products Controller: for functionality on shop and cart */
-app.get('/shop', shop.get)
+app.get('/api/shop', shop.get)
+app.post(`/api/shop/item`, shop.add)
+app.post('/api/shop/checkout', shop.checkOut)
 
 /* User Profile Controller: profile details for each user. */
 app.get('/users/profiles/:id', profiles.get)
@@ -133,6 +135,7 @@ app.get('/api/upload', reviews.get_photos)
 
 
 app.get('/api/user-data', (req, res) => {
+  req.session.user.cart = [];
   res.json(req.session.user);
 });
 

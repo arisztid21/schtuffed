@@ -6,6 +6,6 @@ module.exports = function(app) {
       '/testimonies',
       '/auth/callback',
       '/restaurants',
-      '/api'
+      '/api',
     ],{ target: 'http://localhost:4000/' }));
 };
