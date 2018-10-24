@@ -1,9 +1,12 @@
 module.exports = {
   get: (req, res) => {
     const db = req.app.get('db')
-    console.log("REQ.BODY ============>",req.body);
-    db.get_favorites()
-    .then(favorite => res.status(200).send(favorite))
+    console.log("REQ.BODY ============>",req.params);
+    db.get_favorites(req.params.id)
+    .then(favorites => {
+      console.log(favorites);
+      res.status(200).send(favorites)
+    })
     .catch(error => console.log('Unexpected error in retrieving favorites', error))
   },
 

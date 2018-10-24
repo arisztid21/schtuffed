@@ -7,6 +7,7 @@ const initialState = {
 }
 
 const SET_USER          = "SET_USER",
+      ADD_FAVORITES     = "ADD_FAVORITES",
       SET_FAVORITES     = "SET_FAVORITES",
       ADD_FOLLOWER      = "ADD_FOLLOWER",
       SET_FOLLOWERS     = 'SET_FOLLOWERS';
@@ -16,8 +17,11 @@ export default function userReducer(state = initialState, action) {
         case `${SET_USER}_FULFILLED`:
         console.log(action.payload);
             return {...state, user: action.payload}
-        case `${SET_FAVORITES}_FULFILLED`:
+        case `${ADD_FAVORITES}_FULFILLED`:
         console.log(action.payload);
+            return {...state, favoriteRestaurants: action.payload}
+        case `${SET_FAVORITES}_FULFILLED`:
+        console.log('SET_FAVORITES ============>', action.payload);
             return {...state, favoriteRestaurants: action.payload}
         case `${ADD_FOLLOWER}_FULFILLED`:
         console.log(action.payload);
@@ -35,11 +39,21 @@ export function setUser() {
         payload: axios.get('/api/user-data').then(res => res.data).catch(err => console.log('Err in SET_USER', err))
     }
 }
-export function setFavorites(user_id, restaurant) {
-    console.log('SET_FAVORITES',user_id, restaurant);
+export function addFavorites(user_id, restaurant) {
+    console.log('ADD_FAVORITES',user_id, restaurant);
+    return {
+        type: ADD_FAVORITES,
+        payload: axios.post(`/users/${user_id}/favorites`, restaurant).then(res => res.data).catch(err => console.log('Err in SET_FAVORITES', err))
+    }
+}
+export function setFavorites(id) {
     return {
         type: SET_FAVORITES,
-        payload: axios.post(`/users/${user_id}/favorites`, restaurant).then(res => res.data).catch(err => console.log('Err in SET_FAVORITES', err))
+        payload: axios.get(`/users/favorites/${id}`)
+        .then(res => {
+          console.log(res.data)
+          return res.data
+        })
     }
 }
 export function addFollower(user_id, follower_id) {
