@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import ProfileReview from './ProfileReview';
+import { connect } from 'react-redux';
+import { setFavorites } from '../../redux/userReducer';
 import axios from 'axios'
+import './profile.scss';
 
 class Profile extends Component {
   constructor() {
@@ -8,7 +11,10 @@ class Profile extends Component {
     this.state = {
       userProfile: null,
       userReviews: null,
-      userFollowers: null
+      userFollowers: null,
+      toggleFollowers: false,
+      toggleFavorites: false,
+      toggleReviews: true
     }
   }
 
@@ -16,6 +22,7 @@ class Profile extends Component {
     this.getProfile()
     this.getReviews()
     this.getFollowers();
+    this.props.setFavorites(this.props.match.params.id);
   }
 
   getReviews = () => {
@@ -43,44 +50,87 @@ class Profile extends Component {
       })
       .catch(err => console.log('Err in getFollowers', err));
   }
+  toggleFavorites = () => {
+    this.setState({
+      toggleFavorites: true,
+      toggleFollowers: false,
+      toggleReviews: false
+    })
+  }
+  toggleFollowers = () => {
+    this.setState({
+      toggleFavorites: false,
+      toggleFollowers: true,
+      toggleReviews: false
+    })
+  }
+  toggleReviews = () => {
+    this.setState({
+      toggleFavorites: false,
+      toggleFollowers: false,
+      toggleReviews: true
+    })
+  }
 
 
   render () {
 console.log(this.state);
 
     if (this.state.userReviews) {
-      var displayedReviews = this.state.userReviews.map(review => {
-        return <ProfileReview key={review.user_id} {...review} />
+      var displayedReviews = this.state.userReviews.map((review, i )=> {
+        return <ProfileReview key={i} {...review} />
       })
     }
     if(this.state.userFollowers) {
       var displayedFollowers = this.state.userFollowers.map(follower => {
-        return <div className="profile-followers-container">
+        return <div key={follower.id} className="profile-followers-container">
             <h2>{follower.username}</h2>
             <img src={follower.photos} alt={follower.name} />
         </div>
       })
     }
+    if(this.props.favoriteRestaurants) {
+      var displayedFavorites = this.props.favoriteRestaurants.map(favorite => {
+        let { restaurant } = favorite;
+        return <div key={restaurant.id} className="profile-favorites-container">
+        <h2>{restaurant.name}</h2>
+        <img src={restaurant.thumb} alt={restaurant.name} />
+    </div>
+      })
+    }
 
-
+      let { toggleFavorites, toggleFollowers, toggleReviews } = this.state
     return (
-      <div className="profile-container">
+      <div className="profile">
         <div className="profiledetails-container">
-          {this.state.userProfile ? this.state.userProfile[0].username : "Loading..."}
           <img src={this.state.userProfile ? this.state.userProfile[0].photos : "Loading..."} />
-          <ul>
-            <li>
-              Followers
+          {this.state.userProfile ? this.state.userProfile[0].username : "Loading..."}
+        </div>
+        <div className="review-container">
+        <ul>
+          <li onClick={() => this.toggleReviews()}>
+              Reviews
+            </li>
+            <li onClick={() => this.toggleFollowers()}>
+              Following
+            </li>
+            <li onClick={() => this.toggleFavorites()}>
+              Favorites
             </li>
           </ul>
-        </div>
-        {this.state.userFollowers && displayedFollowers}
-        <div className="review-container">
-          {this.state.userProfile ? displayedReviews : "Loading..."}
+
+          {toggleReviews ? displayedReviews : toggleFavorites ? displayedFavorites : toggleFollowers ? displayedFollowers : 'Loading...' }
         </div>
       </div>
     )
   }
 }
 
-export default Profile
+const mapStateToProps = state => {
+  let { favoriteRestaurants } = state.users;
+  return {
+    favoriteRestaurants
+  }
+}
+
+export default connect(mapStateToProps, {setFavorites})(Profile);

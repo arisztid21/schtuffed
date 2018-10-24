@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import './Header.scss';
 
 const Header = (props) => {
     const login = () => {
@@ -13,9 +14,7 @@ const Header = (props) => {
           axios.post('/api/logout').then(() => console.log('Logged out'));
       }
     return ( 
-        <header>
-            <div className="brand">
-            </div>
+        <header className="header">
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/search/results">Results(Test)</Link>
@@ -25,7 +24,7 @@ const Header = (props) => {
             </nav>
             <div className="login-signup">
                 {props.user ? <button onClick={logout}>Logout</button> : <React.Fragment> <button onClick={login}>Log In</button>
-                <button onClick={login}>Sign Up</button> </React.Fragment> }
+                <button className="signup" onClick={login}>Sign Up</button> </React.Fragment> }
             </div>
         </header>
      );

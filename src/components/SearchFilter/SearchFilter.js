@@ -1,12 +1,11 @@
 import React from 'react';
-import './SearchFilter.css'
+import './SearchFilter.scss'
 import {connect} from 'react-redux'
 import axios from 'axios'
 import { setPriceOne, setPriceTwo, setPriceThree, setPriceFour } from '../../redux/restaurantReducer'
 
 const SearchFilter = (props) => {
     console.log(props);
-
 
     const sortHighest = () => {
       axios.get('https://developers.zomato.com/api/v2.1/search?q=Italian&count=3&sort=rating&order=desc', {
@@ -62,25 +61,28 @@ const SearchFilter = (props) => {
       })
     }
 
+
     return (
-        <div className="searchfilter-container">
-            <div className="searchfilter-header">
-              Search Results - include search and city searched.
+        <div className="SearchFilter">
+          <div className="SearchFilterSecondary">
+            <div className="SearchFilterHeader">
+              <h1>Best Restaurants in {props.restaurantList[0].restaurant.location.city}</h1>
             </div>
-            <div className="searchfilter-main">
-              <div className="searchfilter-sortby">
+            <div className="SearchFilterMain">
+              <div className="SearchFilterSortBy">
                 <h1>Sort By</h1>
-                <button onClick={sortHighest}>Highest Rated</button>
-                <button onClick={sortLowest}>Lowest Rated</button> 
+                <button id="leftborder" onClick={sortHighest}>Highest Rated</button>
+                <button id="rightborder" onClick={sortLowest}>Lowest Rated</button>
               </div>
-              <div className="searchfilter-price">
+              <div className="SearchFilterPrice">
                 <h1>Price</h1>
-                <button onClick={sortPriceOne}>$</button>
+                <button id="leftborder" onClick={sortPriceOne}>$</button>
                 <button onClick={sortPriceTwo}>$$</button>
                 <button onClick={sortPriceThree}>$$$</button>
-                <button onClick={sortPriceFour}>$$$$</button>
+                <button id="rightborder" onClick={sortPriceFour}>$$$$</button>
               </div>
             </div>
+          </div>
         </div>
      );
 }

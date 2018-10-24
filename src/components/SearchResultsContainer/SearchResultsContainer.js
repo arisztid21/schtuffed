@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setFavorites } from '../../redux/userReducer';
+import { addFavorites, setFavorites } from '../../redux/userReducer';
 import { setHighestRating, setLowestRating, setPriceOne, setPriceTwo, setPriceThree, setPriceFour } from '../../redux/restaurantReducer';
 import SearchResults from '../SearchResults/SearchResults';
 import SearchFilter from '../SearchFilter/SearchFilter';
@@ -23,15 +23,17 @@ const SearchResultsContainer = (props) => {
 
 const mapStateToProps = state => {
     let { restaurantList, isLoading } = state.restaurants;
-    let { user } = state.users;
+    let { user, favoriteRestaurants } = state.users;
     return {
         restaurantList,
         user,
-        isLoading
+        isLoading,
+        favoriteRestaurants
     }
 }
 
 const mapDispatchToProps = {
+    addFavorites,
     setFavorites,
     setHighestRating,
     setLowestRating,
