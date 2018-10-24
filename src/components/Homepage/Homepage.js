@@ -23,9 +23,7 @@ class Homepage extends Component {
                     <button onClick={() => this.handleSearch()}><span role="img">&#x1F50E;</span></button>
                 </form>
                 {/* <button onClick={() => this.handleSearch()}><span role="img">&#x1F50E;</span></button> */}
-
                 <Link to={'/user/testimonies'}><h3>What are people saying about Schtuffed?</h3></Link>
-
             </div>
          );
     }
