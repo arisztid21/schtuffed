@@ -7,5 +7,5 @@ module.exports = function(app) {
       '/auth/callback',
       '/restaurants',
       '/api',
-    ],{ target: 'http://localhost:4000/' }));
+    ],{ target: 'http://localhost:4001/' }));
 };
