@@ -6,12 +6,14 @@ import { setUser, setFavorites } from '../../redux/userReducer';
 import { Link } from 'react-router-dom'
 
 class Homepage extends Component {
-    componentDidMount() {
-        this.props.setUser();
-        setTimeout(() => {
-            this.props.setFavorites(this.props.user.id || 0);
-        }, 500)
-    }
+  componentDidMount() {
+      this.props.setUser();
+      setTimeout(() => {
+          if(this.props.user) {
+              this.props.setFavorites(this.props.user.id || 0);
+          }
+      }, 500)
+  }
     handleSearch = () => {
         this.props.setRestaurantList(this.props.searchInput, this.props.cityId, this.props.history)
     }
