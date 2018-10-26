@@ -1,1 +1,1 @@
-insert into Cart (user_id, products) values ($1, $2);
+insert into Cart (user_id, products, total, purchase_date) values ($1, $2, $3, $4);

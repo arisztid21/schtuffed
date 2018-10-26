@@ -110,7 +110,9 @@ app.post('/users/:id/followers', followers.post)
 /* Products Controller: for functionality on shop and cart */
 app.get('/api/shop', shop.get)
 app.post(`/api/shop/item`, shop.add)
+app.post(`/api/shop/item/delete`, shop.minus)
 app.post('/api/shop/checkout', shop.checkOut)
+app.get('/api/shop/cart', shop.userCart)
 
 /* User Profile Controller: profile details for each user. */
 app.get('/users/profiles/:id', profiles.get)
@@ -135,8 +137,12 @@ app.get('/api/upload', reviews.get_photos)
 
 
 app.get('/api/user-data', (req, res) => {
+  if(req.session.user.cart){
+    res.json(req.session.user);
+  }else{
   req.session.user.cart = [];
-  res.json(req.session.user);
+  req.session.user.total = 0;
+  res.json(req.session.user);}
 });
 
 app.post('/api/logout', (req, res) => {
@@ -149,5 +155,5 @@ app.get('*', (req, res)=>{
  res.sendFile(path.join(__dirname, '../build/index.html'));
 })
 
-const PORT = 4000;
+const PORT = 4001;
 app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`));

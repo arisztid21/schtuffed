@@ -22,6 +22,11 @@ export default class Shop extends Component {
         .then(res => console.log(res))
     }
 
+    deleteFromCart = (item) => {
+        axios.post(`/api/shop/item/delete`, item)
+        .then(res => console.log(res))
+    }
+
     render() {
         let product = this.state.products.map(e => {
             return<div key={e.id}>
@@ -29,8 +34,8 @@ export default class Shop extends Component {
                 <img src={e.item_image}/>
                 <div>${e.item_price}</div>
                 <button onClick={() => this.addToCart(e)}>add to cart</button>
-                <button>+</button>
-                <button>-</button>
+                <button onClick={() => this.addToCart(e)}>+</button>
+                <button onClick={() => this.deleteFromCart(e)}>-</button>
             </div>
         })
         return (
