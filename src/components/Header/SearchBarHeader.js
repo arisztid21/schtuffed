@@ -9,7 +9,7 @@ import './SearchBarHeader.scss'
 
 const SearchBar = (props) => {
   console.log(props);
-  
+
     let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = props
     const login = () => {
         const redirectUri = encodeURIComponent(`${window.location.origin}/auth/callback`);

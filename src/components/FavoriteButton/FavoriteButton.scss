@@ -1,0 +1,11 @@
+@import '../../index';
+
+.FavoriteButton {
+  button {
+    min-width: 11em;
+    height: 5vh;
+    font-weight: bolder;
+    border-radius: 3px;
+    border: 1px solid black;
+  }
+}

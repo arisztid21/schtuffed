@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import './ProfileThumb.scss'
+import {Link} from 'react-router-dom'
 
 class ProfileThumb extends Component {
   constructor () {
@@ -23,9 +25,13 @@ class ProfileThumb extends Component {
     console.log(this.props)
     console.log(this.state)
     return (
-      <div className="profilethumb-container">
-        {this.state.userProfile ? this.state.userProfile[0].username : "Loading"}
+      <div className="ProfileThumb">
           <img src={this.state.userProfile ? this.state.userProfile[0].photos : "Loading"} />
+          <div className="ProfileThumbDetails">
+             <h2>{this.state.userProfile ? this.state.userProfile[0].username : "Loading"}</h2>
+            <h3>Followers:</h3>
+            <h3>Total Reviews:</h3>
+          </div>
       </div>
     )
   }
