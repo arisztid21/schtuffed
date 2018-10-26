@@ -20,10 +20,22 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
+    
     this.getProfile()
     this.getReviews()
     this.getFollowers();
     this.props.setFavorites(this.props.match.params.id);
+  }
+  componentDidUpdate(prevProps) {
+    console.log('prevpProps ======================>', prevProps);
+    
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.getProfile()
+      this.getReviews()
+      this.getFollowers();
+      this.props.setFavorites(this.props.match.params.id)
+    }
   }
 
   getReviews = () => {
@@ -88,7 +100,7 @@ console.log(this.state);
       var displayedFollowers = this.state.userFollowers.map(follower => {
         return <div key={follower.id} className="profile-followers-container">
             <img src={follower.photos} alt={follower.name} />
-            <h2>{follower.username}</h2>
+            <Link to={`/user/profile/${follower.id}`}><h2>{follower.username}</h2></Link>
         </div>
       })
     }
