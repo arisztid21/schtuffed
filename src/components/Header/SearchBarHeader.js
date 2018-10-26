@@ -50,8 +50,6 @@ const SearchBar = (props) => {
           </div>
         </div>
       </div>
-      // {props.user ? <button onClick={logout}>Logout</button> : <React.Fragment> <button id="login" onClick={login}>Log In</button>
-      // <button className="signup" onClick={login}>Sign Up</button> </React.Fragment> }
     );
 }
 
