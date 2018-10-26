@@ -1,0 +1,36 @@
+@import '../../../index';
+
+.Reviews {
+  background: $primary-color;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4em 0;
+
+  .ReviewsHeader {
+    h1 {
+      text-transform: uppercase;
+      font-weight: bolder;
+      font-size: 2.5em;
+      margin-bottom: .5em;
+    }
+
+  }
+
+  .ReviewsVideo {
+    margin-bottom: 1em;
+  }
+
+  .ReviewsButton {
+
+    button {
+      background: #f8f8f8;
+      width: 13em;
+      height: 5vh;
+      font-weight: bolder;
+      border-radius: $border-radius;
+
+    }
+  }
+}

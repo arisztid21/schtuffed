@@ -25,11 +25,15 @@ const SearchBar = (props) => {
 
           <div className="SearchBarHeaderInput">
             <form onSubmit={(e) => e.preventDefault()}>
-              <span>Find</span>
-              <input id="margin" onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="Restaurants" />
+              <div className="SearchBarHeaderForm">
+                <span>Find</span>
+                <input id="margin" onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="Restaurants" />
+              </div>
 
-              <span>Near</span>
-              <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder={props.restaurantList[0].restaurant.location.city} />
+              <div className="SearchBarHeaderForm">
+                <span>Near</span>
+                <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder={props.restaurantList[0].restaurant.location.city} />
+              </div>
             </form>
               <button onClick={() => handleSearch()}><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Antu_dialog-icon-preview.svg/512px-Antu_dialog-icon-preview.svg.png" /></button>
           </div>

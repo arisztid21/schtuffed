@@ -11,13 +11,14 @@ class App extends Component {
   render() {
     console.log(this.props);
 
+    // {this.props.location.pathname == '/' && <Link className="conditional-testimony-link" to={'/user/testimonies'}><h3>What are people saying about Schtuffed?</h3></Link> }
+
     return (
       <div className="App">
       {this.props.location.pathname !== '/' ? <SearchBar /> : <Header /> }
 
         {routes}
-        {this.props.location.pathname == '/' && <Link className="conditional-testimony-link" to={'/user/testimonies'}><h3>What are people saying about Schtuffed?</h3></Link> }
-        <Footer /> 
+        <Footer />
       </div>
     );
   }
