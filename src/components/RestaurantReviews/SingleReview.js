@@ -7,7 +7,6 @@ const SingleReview = (props) => {
   console.log(props)
   return (
     <div className="SingleReview">
-
         <div className="SingleReviewUser">
           <ProfileThumb id={props.user_id} match={props.match}/>
             {props.user &&  <FollowButton id={props.user_id} followers={props.followers}/> }
