@@ -1,2 +1,141 @@
 @import '../../index.scss';
 
+.profile {
+    min-height: 100vh;
+    .profile-links {
+        height: 40px;
+    }
+    .profile-details-container {
+        background: $secondary-color;
+        border-bottom: 1px solid #e2e1e1;
+        height: 20vh;
+        .profile-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            img {
+                padding-top: 2em;
+                border-radius: 3px;
+                width: 50%;
+            }
+            .profile-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 2em;
+                div {
+                    display: flex;
+                    align-items: center;
+                    svg {
+                        padding-right: 0.2em;
+                        width: 5%;
+                        path {
+                            fill: #f15c00;
+                        }
+                    }
+                    p {
+                        margin-right: 1em;
+                    }
+                }
+            }
+        }
+    }
+    .review-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        max-width: 800px;
+        margin: 4em auto 0 auto;
+        ul {
+            width: 30%;
+            li {
+                border-bottom: 1px solid $secondary-color;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                padding: 12px 0;
+                svg {
+                    padding-right: 0.2em;
+                    width: 10%;
+                }
+            }
+        }
+        .reviews {
+            display: flex;
+            flex-direction: column;
+            margin-top: 2em;
+            h1 {
+                color: $primary-color;
+                font-weight: 500;
+                font-size: 2.3vh;
+                margin-bottom: 1em;
+            }
+            .reviews-module {
+                img {
+                    border-radius: 3px;
+                }
+                .reviews-restaurant-thumb {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1em;
+                    font-size: 1.5vh;
+                    width: 80%;
+                    div {
+                        width: 75%;
+                    }
+                    p {
+                        font-size: 1.2vh;
+                    }
+                    img {
+                        @extend img;
+                        margin-right: 0.2em;
+                        width: 32%;
+                    }
+                }
+                .reviews-description {
+                    h2 {
+                        font-size: 1.5vh;
+                        span {
+                            color: grey;
+                        }
+                    }
+                    p {
+                        margin: 1em 0;
+                    }
+                }
+                //  End of .reviews-module
+            }
+            .profile-followers-container {
+                display: flex;
+                justify-content: baseline;
+                align-items: center;
+                img {
+                    border-radius: 3px;
+                    width: 15%;
+                }
+            }
+            // End of .reviews
+        }
+        .favorites {
+          display: block;
+          h1 {
+            color: $primary-color;
+            font-weight: 500;
+            font-size: 2.3vh;
+            margin-bottom: 1em;
+        }
+          .profile-favorites-container {
+              float: left;
+              margin: .1em;
+              h2 {
+                  margin-bottom: 0.5em;
+              }
+          }
+        } 
+    }
+
+    //End of .profile
+}

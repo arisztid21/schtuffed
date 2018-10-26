@@ -21,7 +21,9 @@ class RestaurantReviews extends Component {
       console.log(res);
       this.props.setRestaurantReviews(res.data)
     }).catch(error => console.log(error))
-    this.props.setFollowers(this.props.user.id)
+    if(this.props.user) {
+      this.props.setFollowers(this.props.user.id)
+    }
   }
 
   postReview = (ratings, description, restaurant_id, user_id, review_photos) => {
