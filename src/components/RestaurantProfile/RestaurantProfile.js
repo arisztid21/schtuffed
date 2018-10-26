@@ -17,7 +17,7 @@ const RestaurantProfile = (props) => {
     let { thumb, name } = restaurant.restaurant;
     return (
         <div className="RestaurantProfile">
-          {user && <Favoritebutton restaurant={restaurant} setFavorites={setFavorites} user={user} />}
+          {user && <Favoritebutton restaurant={restaurant} setFavorites={setFavorites} favoriteRestaurants={favoriteRestaurants} user={user} />}
            <img src={thumb} alt={name} />
            <h3>{name}</h3>
            <RestaurantReviews match={props.data.match}/>

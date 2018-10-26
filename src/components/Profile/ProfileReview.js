@@ -21,16 +21,26 @@ class ProfileReview extends Component {
     render() { 
         console.log(this.props);
         console.log('STATE', this.state);
-        
+        if(this.state.restaurant) {
+            var { name, thumb, location, price_range} = this.state.restaurant;
+        }
         return ( 
             <div className="reviews-module">
                 <div className="reviews-restaurant-thumb">
-                <h2>{this.state.restaurant ? <Link to={`/restaurant-profile/${this.props.restaurant_id}`}>{this.state.restaurant.name}</Link> : 'Loading...'}</h2>
+                {this.state.restaurant ?
+                    <>
+                        <img src={thumb} alt={name} />
+                        <div>
+                            <h2><Link to={`/restaurant-profile/${this.props.restaurant_id}`}>{name}</Link></h2>
+                            <p>{price_range == 1 ? '$' : price_range == 2 ? '$$' : price_range >= 3 ? '$$$$' : ''}</p>
+                            <p>{location.address}</p>
+                        </div>
+                    </> : 'Loading...'}
                 </div>
                 <div className="reviews-description">
-                <h3>{this.props.ratings}</h3>
-                <h2>{this.props.description}</h2>
-                <img src={this.props.review_photos}/>
+                    <h2>Rating: {this.props.ratings}.0 <span>{this.props.date_posted}</span></h2>
+                    <p>{this.props.description}</p>
+                    <img src={this.props.review_photos}/>
                 </div>
             </div>
          );
