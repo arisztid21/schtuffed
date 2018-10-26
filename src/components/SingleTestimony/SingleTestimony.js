@@ -1,37 +1,68 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios'
+import './SingleTestimony.scss'
 
-const SingleTestimony = (props) => {
+class SingleTestimony extends Component {
 
-    console.log(props)
-    let { title, ratings, description, date_posted, stateTitle, stateRating, stateDescription, toggleEdit, editedTestimony } = props;
+  componentDidUpdate (prevProps) {
+    if (this.props !== prevProps) {
+      this.props.getTestimonies()
+    }
+  }
+
+  render () {
+
+    console.log(this.props)
+
+    let { title,
+      ratings,
+      description,
+      date_posted,
+      stateTitle,
+      stateRating,
+      stateDescription,
+      toggleEdit,
+      editedTestimony,
+      handleChange,
+      handleToggleEdit,
+      deleteTestimony,
+      editTestimony
+    } = this.props;
+
     return (
-        <div>
 
+      <div className="SingleTestimony">
 
-            <input name="title" type="text" value={toggleEdit && props.id == editedTestimony ? stateTitle : title} onChange={(e) => props.handleChange(e)} />
+        {this.props.id &&
+          <div className="SingleTestimonyInputs">
+            <input className={toggleEdit ? "showInput" : "none" } name="title" type="text" value={toggleEdit && this.props.id == editedTestimony ? stateTitle : title} onChange={(e) => handleChange(e)} />
             <span>{date_posted}</span>
-            <input name="rating" type="text" value={toggleEdit && props.id == editedTestimony ? stateRating : ratings} onChange={(e) => props.handleChange(e)}/>
-            <input name="description" type="text" value={toggleEdit && props.id == editedTestimony ? stateDescription : description} onChange={(e) => props.handleChange(e)}/>
+            <input className={toggleEdit ? "showInput" : "none" } name="rating" type="text" value={toggleEdit && this.props.id == editedTestimony ? stateRating : ratings} onChange={(e) => handleChange(e)}/>
+            <input className={toggleEdit ? "showInput" : "none" } name="description" type="text" value={toggleEdit && this.props.id == editedTestimony ? stateDescription : description} onChange={(e) => handleChange(e)}/>
+          </div>
 
-            {props.user
+        }
 
-              ? <div className="SingleTestimonyLoggedIn">
+          {this.props.user && this.props.user_id == this.props.user.id ?
 
-              <button onClick={() => props.deleteTestimony(props.id)}>Delete Button</button>
-              <button onClick={() => props.editTestimony(props.id, stateTitle, stateRating, stateDescription, props.user_id)}>Save Changes</button>
-              <button onClick={() => props.handleToggleEdit(title, ratings, description, props.id)}>Edit</button>
+            <div className="SingleTestimonyLoggedIn">
 
-
-              </div>
-
-              :
-
-              null
+            {this.props.toggleEdit ?
+                <button onClick={() => editTestimony(this.props.id, stateTitle, stateRating, stateDescription, this.props.user_id)}>Save Changes</button> :
+                <button onClick={() => handleToggleEdit(title, ratings, description, this.props.id)}>Edit</button>
             }
-            
-        </div>
-     );
+
+              <button onClick={() => deleteTestimony(this.props.id)}>Delete Button</button>
+            </div>
+
+            :
+
+            null
+          }
+
+      </div>
+    )
+  }
 }
 
 export default SingleTestimony;

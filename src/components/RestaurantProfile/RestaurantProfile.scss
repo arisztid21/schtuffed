@@ -1,1 +1,97 @@
 @import '../../index';
+
+.RestaurantProfile {
+  width: 100vw;
+  height: auto;
+  background: white;
+  color: #333;
+
+  .RestaurantProfileSecondary {
+    padding: 2em 0 15em 0;
+    width: 100%;
+    background: $secondary-color;
+    border-bottom: 1px solid #ddd;
+
+    .RestaurantProfileMain {
+      max-width: 70%;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-weight: 600;
+      font-size: 3em;
+      letter-spacing: -.05em;
+      color: #333;
+      padding-bottom: .5em;
+    }
+
+    .RestaurantProfileDirectory {
+      display: flex;
+      justify-content: space-between;
+
+      .RestaurantProfileLinks {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .RestaurantProfileHeader {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: relative;
+      padding-top: 1em;
+    }
+
+    .RestaurantProfilePhoto {
+      img {
+        position: absolute;
+        border: 1px solid #ccc;
+        width: 20em;
+        right: 0;
+
+      }
+    }
+  }
+
+  .RestaurantProfileReviews {
+    width: 100%;
+    height: auto;
+    padding-top: 2em;
+  }
+
+  .RestaurantProfileReviewsSecondary {
+    max-width: 70%;
+    margin: 0 auto;
+
+    h1 {
+      font-weight: 600;
+      font-size: 3em;
+      letter-spacing: -.05em;
+      color: $primary-color;
+      padding-bottom: .5em;
+    }
+
+    .RestaurantProfileReviewButton {
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: .5em;
+
+      button {
+        background: #bd1f1f;
+        border: none;
+        min-width: 12em;
+        min-height: 5vh;
+        border-radius: 3px;
+        color: white;
+        font-weight: bolder;
+        margin-right: 1em;
+        right: 0;
+
+      }
+    }
+  }
+
+
+
+}

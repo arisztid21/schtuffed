@@ -22,13 +22,19 @@ class Testimonies extends Component {
   }
 
   componentDidMount() {
+    this.getTestimonies()
+  }
+
+  getTestimonies = () => {
     axios.get('/testimonies').then(res => {
       this.props.setTestimonies(res.data)
     })
   }
+
 handleChange = (e) => {
   this.setState({[e.target.name]: e.target.value})
 }
+
 handlePost = (title, rating, description, user_id) => {
   axios.post(`/testimonies`, {title, rating, description, user_id})
     .then(res => this.props.setTestimonies(res.data))
@@ -40,9 +46,12 @@ handlePost = (title, rating, description, user_id) => {
 
 handleDelete = (id) => {
   axios.delete(`/testimonies/${id}`)
-  .then(res => console.log(res.data))
+  .then(res => {
+    this.props.setTestimonies(res.data)
+  })
   .catch(err => console.log(err))
 }
+
 handleToggleEdit = (title, rating, description, id) => {
   this.setState({
       title,
@@ -56,17 +65,25 @@ handleToggleEdit = (title, rating, description, id) => {
 handleUpdate = (id, title, rating, description, user_id) => {
   console.log(id, title, rating, description, user_id);
 
-  axios.put(`/testimonies/${id}`, {id, title, rating, description, user_id})
-  .then(res => console.log(res.data))
-  .catch(err => console.log(err))
+  axios.put(`/testimonies/${id}`, {id, title, rating, description, user_id}).then( res => {
+    console.log(res.data[0])
+    this.setState({
+      toggleEdit: !this.state.toggleEdit,
+      tite: res.data[0].title,
+      description: res.data[0].description,
+      rating: res.data[0].ratings
+    })
+  }).catch(error => console.log(error))
 }
 
 
-  handleToggleEdit = () => {
+  handleToggleEditTransition = () => {
     this.setState({
       toggleForm: !this.state.toggleForm
     })
   }
+
+
 
   render () {
     console.log(this.state, this.props)
@@ -87,7 +104,9 @@ handleUpdate = (id, title, rating, description, user_id) => {
         deleteTestimony={this.handleDelete}
         handleToggleEdit={this.handleToggleEdit}
         handleChange={this.handleChange}
-        editTestimony={this.handleUpdate} />
+        editTestimony={this.handleUpdate}
+        getTestimonies={this.getTestimonies}
+        />
     }) }
     return (
       <div className="Testimonies">
@@ -97,36 +116,38 @@ handleUpdate = (id, title, rating, description, user_id) => {
 
             <div className="TestimoniesSmash">
               <div className="TestimoniesSingleSmash">
-                <img src={Samus} />
-                <h2>Samus</h2>
+                <img src={Samus} /><br/>
                   <div className="TestimoniesSingleSmashText">
                       <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
                   </div>
+                  <h2>- Samus</h2>
               </div>
               <div className="TestimoniesSingleSmash">
-                <img src={Link} />
-                <h2>Link</h2>
+                <img src={Link} /><br/>
                   <div className="TestimoniesSingleSmashText">
                       <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
                   </div>
+                  <h2>- Link</h2>
               </div>
               <div className="TestimoniesSingleSmash">
-                <img src={Jigglypuff} />
-                <h2>Jigglypuff</h2>
+                <img src={Jigglypuff} /><br/>
                 <div className="TestimoniesSingleSmashText">
                     <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
                 </div>
+                <h2>- Jigglypuff</h2>
               </div>
             </div>
 
           </div>
           <div className="TestimoniesDisplayed">
             <div className="TestimoniesLength">
-              {this.props.user ? <button onClick={this.handleToggleEdit}>Share Your Experience!</button> : null}
+              {this.props.user ? <button onClick={this.handleToggleEditTransition}>Share Your Experience!</button> : null}
               <h2>Displaying: {this.props.testimonies ? this.props.testimonies.length : "Loading..."} Reviews</h2>
             </div>
+
+
             <div className="TestimoniesForm">
-              <form className={this.state.toggleForm ? 'show' : ''} onSubmit={(e) => e.preventDefault()}>
+              <form className={this.state.toggleForm ? 'show' : 'none'} onSubmit={(e) => e.preventDefault()}>
                 <div className="TestimoniesFormInput">
                   <div className="TestimoniesSingleFormInput">
                     <h2>Headline</h2>
@@ -143,13 +164,15 @@ handleUpdate = (id, title, rating, description, user_id) => {
                     <h2>Description</h2>
                     <input name="description" type="text" placeholder='Description' onChange={(e) => this.handleChange(e)} /><br/>
                   </div>
-
                 </div>
+
+
                 <div className="TestimoniesFormButton">
                   <button onClick={() => this.handlePost(this.state.title, this.state.rating, this.state.description, this.props.user.id)}>Submit Testimonial</button><br/>
                 </div>
               </form>
             </div>
+
             <div className="TestimoniesList">
               {this.props.testimonies ? mappedTestimonies : 'Loading...'}
             </div>
