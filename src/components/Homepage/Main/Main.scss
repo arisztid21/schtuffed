@@ -1,0 +1,86 @@
+@import '../../../index';
+// $primary-color: orange;
+.homepage {
+    background: url($homepage-image) no-repeat;
+    background-size: cover;
+    color: #fff;
+    font-family: Rubik;
+    height: 600px;
+
+    .homepageoverlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(black, 0.5);
+    }
+
+    h1 {
+        margin-bottom: .5em;
+        font-size: 3.5vh;
+        font-weight: 700;
+        font-family: Blueberry;
+        font-size: 5em;
+        color: $primary-color;
+        -webkit-text-stroke: 3px white;
+        -webkit-text-fill-color: $primary-color;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: white;
+    }
+
+    //HomePage Form
+    form {
+        background: $input-bColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-radius: $border-radius;
+        width: 70%;
+        #find, #near {
+            color: grey;
+            font-weight: bold;
+            padding-left: 15px;
+        }
+        #query {
+            background: $input-bColor;
+            border: none;
+            border-right: 1px solid;
+            outline: none;
+            padding: 12px 20px;
+            width: 100%;
+        }
+        #city {
+            @extend #query;
+            border-right: none;
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+        button {
+            background: $primary-color;
+            border: none;
+            border-top-right-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+            height: 47px;
+            width: 12%;
+        }
+        img {
+          width: 3em;
+          height: 3em;
+        }
+    }
+}
+//Testimony Link
+.conditional-testimony-link {
+    color: red;
+    display: block;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 2em;
+    text-align: center;
+}

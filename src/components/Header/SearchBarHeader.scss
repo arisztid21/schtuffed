@@ -30,16 +30,27 @@
   }
 
   .SearchBarHeaderInput {
-    min-width: 40em;
+    min-width: 43em;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     #margin {
       margin-right: .5em;
     }
+
+    form {
+      display: flex;
+    }
+
+    .SearchBarHeaderForm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     input {
       min-width: 20em;
-      height: 2em;
+      height: 22px;
       border: none;
       padding: .5em;
       border-top-right-radius: $border-radius;
@@ -58,13 +69,13 @@
     }
     span {
       background: white;
-      padding: .45em .3em;
       font-weight: bolder;
       color: #333;
-      display: inline-block;
-      min-height: 2.05em;
+      height: 33px;
       border-top-left-radius: $border-radius;
       border-bottom-left-radius: $border-radius;
+      padding: .5em;
+      display: inline-block;
     }
   }
 

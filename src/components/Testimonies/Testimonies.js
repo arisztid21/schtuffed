@@ -3,6 +3,10 @@ import {connect} from 'react-redux'
 import {setTestimonies} from '../../redux/restaurantReducer'
 import axios from 'axios'
 import SingleTestimony from '../SingleTestimony/SingleTestimony';
+import './Testimonies.scss'
+import Samus from './assets/Samus.png';
+import Jigglypuff from './assets/Jigglypuff.png';
+import Link from './assets/Link.png';
 
 class Testimonies extends Component {
   constructor(props) {
@@ -12,7 +16,8 @@ class Testimonies extends Component {
       rating: null,
       description: null,
       toggleEdit: false,
-      editedTestimony: null
+      editedTestimony: null,
+      toggleForm: false
     }
   }
 
@@ -56,8 +61,17 @@ handleUpdate = (id, title, rating, description, user_id) => {
   .catch(err => console.log(err))
 }
 
+
+  handleToggleEdit = () => {
+    this.setState({
+      toggleForm: !this.state.toggleForm
+    })
+  }
+
   render () {
     console.log(this.state, this.props)
+    console.log(this.props.testimonies)
+
     let mappedTestimonies;
     if(this.props.testimonies) {
     mappedTestimonies = this.props.testimonies.map(testimony => {
@@ -76,17 +90,71 @@ handleUpdate = (id, title, rating, description, user_id) => {
         editTestimony={this.handleUpdate} />
     }) }
     return (
-      <div className="testimonies-container">
-        Testimonies
-        {this.props.user &&
-        <form onSubmit={(e) => e.preventDefault()}>
-          <input name="title" type="text" placeholder={'Title...'} onChange={(e) => this.handleChange(e)} />
-          <input name="rating" type="text" placeholder={'Rating...'} onChange={(e) => this.handleChange(e)} />
-          <input name="description" type="text" placeholder='Description' onChange={(e) => this.handleChange(e)} />
-          <button onClick={() => this.handlePost(this.state.title, this.state.rating, this.state.description, this.props.user.id)}>Submit Testimonial</button>
-        </form>
-        }
-        {this.props.testimonies ? mappedTestimonies : 'Loading...'}
+      <div className="Testimonies">
+        <div className="TestimoniesSecondary">
+          <div className="TestimoniesHeader">
+            <h1>Check out what people are saying!</h1>
+
+            <div className="TestimoniesSmash">
+              <div className="TestimoniesSingleSmash">
+                <img src={Samus} />
+                <h2>Samus</h2>
+                  <div className="TestimoniesSingleSmashText">
+                      <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
+                  </div>
+              </div>
+              <div className="TestimoniesSingleSmash">
+                <img src={Link} />
+                <h2>Link</h2>
+                  <div className="TestimoniesSingleSmashText">
+                      <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
+                  </div>
+              </div>
+              <div className="TestimoniesSingleSmash">
+                <img src={Jigglypuff} />
+                <h2>Jigglypuff</h2>
+                <div className="TestimoniesSingleSmashText">
+                    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div className="TestimoniesDisplayed">
+            <div className="TestimoniesLength">
+              {this.props.user ? <button onClick={this.handleToggleEdit}>Share Your Experience!</button> : null}
+              <h2>Displaying: {this.props.testimonies ? this.props.testimonies.length : "Loading..."} Reviews</h2>
+            </div>
+            <div className="TestimoniesForm">
+              <form className={this.state.toggleForm ? 'show' : ''} onSubmit={(e) => e.preventDefault()}>
+                <div className="TestimoniesFormInput">
+                  <div className="TestimoniesSingleFormInput">
+                    <h2>Headline</h2>
+                    <input name="title" type="text" placeholder={'Title...'} onChange={(e) => this.handleChange(e)} /><br/>
+                  </div>
+
+                  <div className="TestimoniesSingleFormInput">
+                    <h2>Rating</h2>
+                    <input name="rating" type="text" placeholder={'Rating...'} onChange={(e) => this.handleChange(e)} /><br/>
+                  </div>
+
+
+                  <div className="TestimoniesSingleFormInput">
+                    <h2>Description</h2>
+                    <input name="description" type="text" placeholder='Description' onChange={(e) => this.handleChange(e)} /><br/>
+                  </div>
+
+                </div>
+                <div className="TestimoniesFormButton">
+                  <button onClick={() => this.handlePost(this.state.title, this.state.rating, this.state.description, this.props.user.id)}>Submit Testimonial</button><br/>
+                </div>
+              </form>
+            </div>
+            <div className="TestimoniesList">
+              {this.props.testimonies ? mappedTestimonies : 'Loading...'}
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

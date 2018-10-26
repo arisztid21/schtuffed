@@ -32,7 +32,7 @@ const SearchResults = (props) => {
                 <h5> ({restaurant.user_rating.votes}) votes</h5>
               </div>
               <div className="MappedPrice">
-                <h5>{restaurant.price_range} - {restaurant.cuisines}</h5>
+                <h5>{restaurant.price_range == 1 ? '$' : restaurant.price_range == 2 ? '$$' : restaurant.price_range >= 3 ? '$$$$' : ''} - {restaurant.cuisines}</h5>
               </div>
             </div>
             <div className="MappedLocation">

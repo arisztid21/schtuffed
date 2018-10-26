@@ -1,0 +1,130 @@
+@import '../../index';
+
+.Testimonies {
+  width: 100%;
+  height: auto;
+  padding: 6em 0;
+
+  button {
+    background: $primary-color;
+    color: white;
+    border: solid 1px #c41314;
+    border-radius: $border-radius;
+    height: 30px;
+    font-weight: bolder;
+  }
+
+  input {
+    border-radius: $border-radius;
+    border: 1px solid #ECECEC;
+  }
+
+  .TestimoniesSecondary {
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .TestimoniesHeader {
+      width: 70%;
+
+      h1 {
+        color: #333;
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 2em;
+        margin-bottom: 1em;
+        text-align: center;
+      }
+      .TestimoniesSmash {
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 2em;
+
+        .TestimoniesSingleSmash {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          min-width: 30%;
+          h2 {
+            font-weight: bolder;
+            color: $primary-color;
+            margin-bottom: .5em;
+          }
+          img {
+            width: 10em;
+            height: 10em;
+            border-radius: 50%;
+            border: 2px solid black;
+            margin-bottom: .5em;
+          }
+          .TestimoniesSingleSmashText {
+            max-width: 320px;
+          }
+        }
+      }
+    }
+
+    .TestimoniesLength {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+    .TestimoniesForm {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      margin-bottom: 1em;
+
+      .TestimoniesFormInput {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h2 {
+          font-weight: bolder;
+          color: #333;
+          margin-bottom: .5em;
+        }
+
+        .TestimoniesSingleFormInput {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+
+        input {
+          width: 100%;
+        }
+
+        }
+      }
+
+      form {
+        height: 0;
+        overflow: hidden;
+        transition: .3s;
+      }
+
+      .show {
+        transition: .3s;
+        height: 200px;
+      }
+
+      input {
+        width: 40%;
+      }
+
+
+
+      .TestimoniesFormButton {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+    }
+  }
+}
