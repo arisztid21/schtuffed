@@ -1,6 +1,7 @@
 import React from 'react';
 import RestaurantReviews from '../RestaurantReviews/RestaurantReviews'
 import Favoritebutton from '../FavoriteButton/FavoriteButton';
+import './RestaurantProfile.scss'
 
 const RestaurantProfile = (props) => {
     console.log(props.data);
@@ -14,16 +15,58 @@ const RestaurantProfile = (props) => {
         console.log(restaurant);
     }
     console.log(restaurant);
-    let { thumb, name } = restaurant.restaurant;
+    let { thumb, name, cuisines, price_range} = restaurant.restaurant;
+
     return (
         <div className="RestaurantProfile">
-          {user && <Favoritebutton restaurant={restaurant} setFavorites={setFavorites} favoriteRestaurants={favoriteRestaurants} user={user} />}
-           <img src={thumb} alt={name} />
-           <h3>{name}</h3>
-           <RestaurantReviews match={props.data.match}/>
-        </div>
+          <div className="RestaurantProfileSecondary">
+            <div className="RestaurantProfileMain">
+              <h1>{name}</h1>
 
-     );
+                <div className="RestaurantProfileDirectory">
+                  <div className="RestaurantProfileRatings">
+                    <h2>Ratings: *****</h2>
+                    <h2>Reviews: </h2>
+                    <h2>{price_range} - {cuisines}</h2>
+                  </div>
+                    {user
+                       &&
+                      <div className="RestaurantProfileLinks">
+                        <Favoritebutton restaurant={restaurant} setFavorites={setFavorites} favoriteRestaurants={favoriteRestaurants} user={user}/>
+                      </div>
+                    }
+              </div>
+
+              <div className="RestaurantProfileHeader">
+                <div className="RestaurantProfilePhoto">
+                  <img src={thumb} alt={name} />
+                </div>
+                <div className="RestaurantProfileMap">
+                  <h2>Insert Map Here</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div className="RestaurantProfileReviews">
+            <div className="RestaurantProfileReviewsSecondary">
+              <div className="RestaurantProfileReviewsDirectory">
+                <h1>Reviews</h1>
+                <div className="RestaurantProfileReviewButton">
+                  <button>Write a Review</button>
+                </div>
+              </div>
+
+              <div className="RestaurantProfileReviewsDisplayed">
+                <RestaurantReviews match={props.data.match}/>
+              </div>
+
+              </div>
+            </div>
+          </div>
+    );
 }
 
 export default RestaurantProfile;

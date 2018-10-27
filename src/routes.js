@@ -10,7 +10,9 @@ import Main from './components/Homepage/Main/Main'
 
 export default (
     <Switch>
-        <Route path="/user/profile/:id" component={Profile} />
+        <Route path="/user/profile/:id" render={(props) => {
+            return <Profile {...props} />
+        }} />
         <Route path="/restaurant-profile/:id" component={SearchResultsContainer} />
         <Route path="/search/results" component={SearchResultsContainer} />
         <Route exact to path="/" component={Homepage} />

@@ -1,1 +1,1 @@
-delete from Testimonies where id = $1;
+delete from Testimonies where id = $1 returning *;

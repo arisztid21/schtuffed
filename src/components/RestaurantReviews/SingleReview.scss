@@ -1,0 +1,31 @@
+@import '../../index';
+
+.SingleReview {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+
+  .SingleReviewUser {
+    width: 25%;
+    height: auto;
+    border-top: 1px solid #ddd;
+    padding: 2em 0;
+  }
+
+  .SingleReviewDescription {
+    width: 75%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-top: 1px solid #ddd;
+    padding: 2em 0;
+
+    img {
+      width: 15em;
+      height: 15em;
+    }
+  }
+
+}

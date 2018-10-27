@@ -9,7 +9,7 @@ import './SearchBarHeader.scss'
 
 const SearchBar = (props) => {
   console.log(props);
-  
+
     let { setRestaurantList, setCityId, setSearchInput, searchInput, cityId } = props
     const login = () => {
         const redirectUri = encodeURIComponent(`${window.location.origin}/auth/callback`);
@@ -38,7 +38,7 @@ const SearchBar = (props) => {
 
               <div className="SearchBarHeaderForm">
                 <span>Near</span>
-                <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder={props.restaurantList[0].restaurant.location.city} />
+                <input onChange={(e) => setCityId(e.target.value)} type="text" placeholder={props.restaurantList && props.restaurantList[0].restaurant.location.city} />
               </div>
             </form>
               <button onClick={() => handleSearch()}><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Antu_dialog-icon-preview.svg/512px-Antu_dialog-icon-preview.svg.png" /></button>
