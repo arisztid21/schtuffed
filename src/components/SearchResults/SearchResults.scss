@@ -2,13 +2,19 @@
 
 .SearchResults {
   width: 100%;
-  height: auto;
+  height: 100vh;
   background: white;
   padding-top: 2em;
+  display: flex;
+
+  .SearchResultsMapBox {
+    margin-right: 1em;
+  }
 
   .SearchResultsSecondary {
     max-width: $secondary-width;
     margin: 0 auto;
+    overflow-y: scroll;
   }
 
   .MappedResults {

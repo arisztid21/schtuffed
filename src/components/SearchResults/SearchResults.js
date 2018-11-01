@@ -63,7 +63,7 @@ const SearchResults = (props) => {
               style="mapbox://styles/mapbox/streets-v9"
               center={[listToMap[0].restaurant.location.longitude, listToMap[0].restaurant.location.latitude]}
               containerStyle={{
-                height: "30vh",
+                height: "50vh",
                 width: "30vw"
               }}
               zoom={[13]}

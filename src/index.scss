@@ -2,8 +2,8 @@
 
 // @font-face {
 //   font-family: "Blueberry";
-//   src: url("./media/Blueberry.otf") format("otf"),
-//        url("./media/Blueberry.ttf") format("ttf");
+//   src: local('Blueberry'), url("media/Blueberry.otf") format("otf");
+//   src: local('Blueberry'), url("media/Blueberry.ttf") format("ttf");
 // }
 
 $font-stack:    Helvetica, sans-serif;

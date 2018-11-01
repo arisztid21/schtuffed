@@ -14,8 +14,8 @@ const RestaurantProfile = (props) => {
         restaurant = JSON.parse(localStorage.getItem('restaurant'));
         console.log(restaurant);
     }
-    console.log(restaurant);
-    let { thumb, name, cuisines, price_range} = restaurant.restaurant;
+    console.log(restaurant.restaurant.user_rating);
+    let { thumb, name, cuisines, price_range, user_rating} = restaurant.restaurant;
 
     return (
         <div className="RestaurantProfile">
@@ -25,9 +25,8 @@ const RestaurantProfile = (props) => {
 
                 <div className="RestaurantProfileDirectory">
                   <div className="RestaurantProfileRatings">
-                    <h2>Ratings: *****</h2>
-                    <h2>Reviews: </h2>
-                    <h2>{price_range} - {cuisines}</h2>
+                    <h2>Ratings: {user_rating.aggregate_rating}</h2>
+                    <h2>{price_range == 1 ? '$' : price_range == 2 ? '$$' : price_range >= 3 ? '$$$$' : ''} - {cuisines}</h2>
                   </div>
                     {user
                        &&

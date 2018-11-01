@@ -78,7 +78,7 @@ export function setRestaurantList(searchInput, cityId, history) {
     //SET &count to 10
     return {
         type: SET_RESTAURANT_LIST,
-        payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=3`, {
+        payload: axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&q=${searchInput}&count=10`, {
             headers: {"user-key": "6ce2f2b32321de9306bcc12a5832bceb"}
         }).then(res => {
             localStorage.setItem('results', JSON.stringify(res.data.restaurants ))
