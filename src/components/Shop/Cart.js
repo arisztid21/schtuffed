@@ -58,7 +58,7 @@ export default class Cart extends Component {
             <div>
                 {userCart}
                 <div>total: {this.state.user && this.state.user.total}</div>
-                <button onClick={() => this.checkOut()}>checkout bitch</button>
+                <button onClick={() => this.checkOut()}>checkout</button>
                 <PaypalExpressBtn client={CLIENT} currency={'USD'} total = {this.state.user && this.state.user.total}/>
                 Cart is being tested to render here. does it work or not?!?!?!??!?!?!?!?!?!?!?!?!
             </div>
